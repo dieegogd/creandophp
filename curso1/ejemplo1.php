@@ -1,5 +1,5 @@
 <html>
-<body style="background-color: red; color: white;">
+<body>
 <?php
     echo "Hola mundo!";
 ?>
