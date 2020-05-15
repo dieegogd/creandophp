@@ -7,6 +7,23 @@
     } else {
         echo "falso";
     }
+
+    if ($un_bool == true): // sin comparación / == / === / != / !==
+        print "verdadero";
+    else:
+        echo "falso";
+    endif;
+
+    if ($un_bool):
+        echo "mi salida nueva";
+    endif;
+
+    if ($un_bool) {
+        echo "aslkdf jaslk jañsld j";
+        echo "mi salida nueva";
+    }
+    echo "otra linea";
+
 ?>
 <br />
 <?php
