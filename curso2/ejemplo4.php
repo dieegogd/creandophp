@@ -9,7 +9,7 @@
  print "$foo <br>\n";
  $foo = 1 + "-1.3e3";        // $foo es doble (-1299)
  print "$foo <br>\n";
- $foo = 1 + "-1.3e3";        // $foo es entero (1)
+ $foo = 1 + "-0.13e4";        // $foo es entero (-1299)
  print "$foo <br>\n";
  $foo = 1 + "3";             // $foo es entero (4)
  print "$foo <br>\n";
