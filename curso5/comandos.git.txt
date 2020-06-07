@@ -1,0 +1,19 @@
+git clone {url del repositorio} #clonar el repositorio remoto
+
+git status # para ver el estado de la rama actual en donde estoy parado y los archivos modificados y los que estoy por hacer commit
+
+git pull # traer los cambios del repositorio remoto y une
+
+git fetch # traer los cambios del repositorio remoto pero no une
+
+git push # mandar los cambios al repositorio remoto
+
+git checkout -b {nombrederama} # crear rama desde la rama que estoy parado
+
+git merge {nombrederama} # unir cambios de rama {nombrederama} a la rama en que estoy parado
+
+git checkout {nombrederama} # para cambiarse de rama a {nombrederama}
+
+git add -A # agrega todo lo que esta en rojo
+
+git add . # agrega todo lo que esta en rojo pero dentro de la carpeta en el que ejecuto el comando
