@@ -13,7 +13,7 @@ class StoreClinicasRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreClinicasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'      => 'required',
+            'descripcion' => 'required',
+            'detalle'     => 'required',
+            'domicilio'   => 'required',
+            'telefonos'   => 'required',
+            'fax'         => 'required',
+            'email'       => 'required',
+            'url'         => 'required',
+            'imagen'      => 'required',
+            'coordenadas' => 'required'
         ];
     }
 }
