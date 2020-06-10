@@ -2,84 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function store(StoreTaskRequest $request)
     {
-        //
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->content = $request->content;
+
+        $task->save();
+        //Esta función guardará las tareas que enviaremos mediante vuejs
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function update(StoreTaskRequest $request)
     {
-        //
+        $task = Task::findOrFail($request->id);
+
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->content = $request->content;
+
+        $task->save();
+
+        return $task;
+        //Esta función actualizará la tarea que hayamos seleccionado
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
+        $task = Task::destroy($request->id);
+        return $task;
+        //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
     }
 }
