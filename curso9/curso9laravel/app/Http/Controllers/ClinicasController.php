@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clinicas;
+use App\Http\Requests\CreateClinicaRequest;
 use Illuminate\Http\Request;
 
 class ClinicasController extends Controller
@@ -14,7 +15,8 @@ class ClinicasController extends Controller
      */
     public function index()
     {
-        //
+        $clinicas = Clinicas::all();
+        return view('clinicas.index', compact('clinicas', 'request'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClinicasController extends Controller
      */
     public function create()
     {
-        //
+        return view('clinicas.create');
     }
 
     /**
@@ -33,9 +35,20 @@ class ClinicasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateClinicaRequest $request)
     {
-        //
+        $oStore = new Clinicas([
+            'nombre' => $request->get('nombre'),
+            'direccion' => $request->get('direccion'),
+            'telefono' => $request->get('telefono'),
+            'fax' => $request->get('fax'),
+            'email' => $request->get('email'),
+        ]);
+        $oStore->save();
+        return redirect('/clinicas')->with(
+            'success',
+            'La clínica se guardó correctamente'
+        );
     }
 
     /**
@@ -44,9 +57,9 @@ class ClinicasController extends Controller
      * @param  \App\Clinicas  $clinicas
      * @return \Illuminate\Http\Response
      */
-    public function show(Clinicas $clinicas)
+    public function show(Request $request)
     {
-        //
+        echo $request->all();
     }
 
     /**
@@ -67,7 +80,7 @@ class ClinicasController extends Controller
      * @param  \App\Clinicas  $clinicas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clinicas $clinicas)
+    public function update(CreateClinicaRequest $request, Clinicas $clinicas)
     {
         //
     }
