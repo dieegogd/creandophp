@@ -1,49 +1,59 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínicas</title>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+</head>
+<body>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-start">
+                <h1>Clinicas</h1>
+            </div>
+            <div class="col align-self-center">
+                <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Agregar</a>
+            </div>
+            <div class="col align-self-end">
+                by Diego
+            </div>
+        </div>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col align-self-start">
-            <h1>Clinicas</h1>
-        </div>
-        <div class="col align-self-center">
-            <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Agregar</a>
-        </div>
-        <div class="col align-self-end">
-            by Diego
-        </div>
+        <table class="table">
+            <thead>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Fax</th>
+                <th>Email</th>
+                <th>Creado</th>
+                <th>Modificado</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                @foreach ($clinicas as $clinica)
+                <tr>
+                    <td>{{ $clinica->id }}</td>
+                    <td>{{ $clinica->nombre }}</td>
+                    <td>{{ $clinica->direccion }}</td>
+                    <td>{{ $clinica->telefono }}</td>
+                    <td>{{ $clinica->fax }}</td>
+                    <td>{{ $clinica->email }}</td>
+                    <td>{{ $clinica->created_at ? Carbon\Carbon::parse($clinica->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
+                    <td>{{ $clinica->updated_at ? Carbon\Carbon::parse($clinica->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
+                    <td style="white-space: nowrap;">
+                        <a href="{{ route('clinicas.show', $clinica->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Ver</a>
+                        <a href="{{ route('clinicas.edit', $clinica->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Editar</a>
+                        <a href="{{ route('clinicas.destroy', $clinica->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
-    <table class="table">
-        <thead>
-            <th>id</th>
-            <th>nombre</th>
-            <th>direccion</th>
-            <th>telefono</th>
-            <th>fax</th>
-            <th>email</th>
-            <th>creado</th>
-            <th>modificado</th>
-        </thead>
-        <tbody>
-            @foreach ($clinicas as $clinica)
-            <tr>
-                <td>{{ $clinica->id }}</td>
-                <td>{{ $clinica->nombre }}</td>
-                <td>{{ $clinica->direccion }}</td>
-                <td>{{ $clinica->telefono }}</td>
-                <td>{{ $clinica->fax }}</td>
-                <td>{{ $clinica->email }}</td>
-                <td>{{ $clinica->created_at }}</td>
-                <td>{{ $clinica->updated_at }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
-
+</body>
+</html>

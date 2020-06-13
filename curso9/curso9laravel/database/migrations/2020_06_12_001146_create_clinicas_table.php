@@ -20,6 +20,7 @@ class CreateClinicasTable extends Migration
             $table->string('telefono', 20);
             $table->string('fax', 20);
             $table->string('email', 250);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
