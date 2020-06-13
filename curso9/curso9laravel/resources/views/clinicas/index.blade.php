@@ -14,7 +14,7 @@
                 <h1>Clinicas</h1>
             </div>
             <div class="col align-self-center">
-                <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> Agregar</a>
+                <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar</a>
             </div>
             <div class="col align-self-end">
                 by Diego
