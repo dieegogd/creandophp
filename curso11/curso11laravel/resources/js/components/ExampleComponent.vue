@@ -8,17 +8,23 @@
                 <table class="table table-striped"><!--Creamos una tabla que mostrará todas las clinicas-->
                     <thead>
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Contenido</th>
+                            <th scope="col">Creado</th>
+                            <th scope="col">Modificado</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="task in arrayTasks" :key="task.id"> <!--Recorremos el array y cargamos nuestra tabla-->
+                            <td v-text="task.id"></td>
                             <td v-text="task.nombre"></td>
                             <td v-text="task.descripcion"></td>
                             <td v-text="task.contenido"></td>
+                            <td v-text="task.created_at"></td>
+                            <td v-text="task.updated_at"></td>
                             <td>
                                 <button class="btn btn-sm btn-primary" @click="loadFieldsUpdate(task)"><i class="fa fa-edit"></i>&nbsp;Modificar</button>
                                 <button class="btn btn-sm btn-danger" @click="deleteTask(task)"><i class="fa fa-edit"></i>&nbsp;Borrar</button>
@@ -28,13 +34,15 @@
                 </table>
             </div>
             <div id="actions" class="col-sm-4" style="display: none;">
-                <div class="form-group"><!-- Formulario para la creación o modificación de nuestras clinicas-->
+                <div class="form-group">
                     <label for="clinicas_nombre"><strong>Nombre:</strong></label>
                     <input v-model="nombre" id="clinicas_nombre" type="text" class="form-control">
-
+                </div>
+                <div class="form-group"><!-- Formulario para la creación o modificación de nuestras clinicas-->
                     <label for="clinicas_descripcion"><strong>Descripción:</strong></label>
                     <input v-model="descripcion" id="clinicas_descripcion" type="text" class="form-control">
-
+                </div>
+                <div class="form-group"><!-- Formulario para la creación o modificación de nuestras clinicas-->
                     <label for="clinicas_contenido"><strong>Contenido:</strong></label>
                     <input v-model="contenido" id="clinicas_contenido" type="text" class="form-control">
                 </div>
@@ -63,7 +71,7 @@
         methods:{
             showForm(){/* abre el formulario */
                 this.clearFields();
-                $('#actions').show('fast');
+                $('#actions').show();
             },
             getTasks(){
                 let me =this;
@@ -110,15 +118,15 @@
                 });
             },
             loadFieldsUpdate(data){ //Esta función rellena los campos y la variable update, con la clinica que queremos modificar
-                this.showForm();
                 this.update = data.id
                 let me =this;
+                $('#actions').show();
                 let url = '/creandophp/curso11/curso11laravel/public/clinicas/' + this.update;
                 axios.get(url).then(function (response) {
                     me.nombre      = response.data.nombre;
                     me.descripcion = response.data.descripcion;
                     me.contenido   = response.data.contenido;
-
+                    //me.showForm();
                 })
                 .catch(function (error) {
                     // handle error
@@ -141,11 +149,12 @@
                 }
             },
             clearFields(){/*Limpia los campos e inicializa la variable update a 0 y cierra el formulario*/
-                $('#actions').hide('fast');
-                this.nombre      = "";
-                this.descripcion = "";
-                this.contenido   = "";
-                this.update      = 0;
+                let me = this;
+                $('#actions').hide();
+                me.nombre      = "";
+                me.descripcion = "";
+                me.contenido   = "";
+                me.update      = 0;
             }
         },
         mounted() {

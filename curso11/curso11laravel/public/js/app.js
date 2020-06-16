@@ -1958,6 +1958,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1979,7 +1987,7 @@ __webpack_require__.r(__webpack_exports__);
     showForm: function showForm() {
       /* abre el formulario */
       this.clearFields();
-      $('#actions').show('fast');
+      $('#actions').show();
     },
     getTasks: function getTasks() {
       var me = this;
@@ -2029,14 +2037,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     loadFieldsUpdate: function loadFieldsUpdate(data) {
       //Esta función rellena los campos y la variable update, con la clinica que queremos modificar
-      this.showForm();
       this.update = data.id;
       var me = this;
+      $('#actions').show();
       var url = '/creandophp/curso11/curso11laravel/public/clinicas/' + this.update;
       axios.get(url).then(function (response) {
         me.nombre = response.data.nombre;
         me.descripcion = response.data.descripcion;
-        me.contenido = response.data.contenido;
+        me.contenido = response.data.contenido; //me.showForm();
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -2057,11 +2065,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearFields: function clearFields() {
       /*Limpia los campos e inicializa la variable update a 0 y cierra el formulario*/
-      $('#actions').hide('fast');
-      this.nombre = "";
-      this.descripcion = "";
-      this.contenido = "";
-      this.update = 0;
+      var me = this;
+      $('#actions').hide();
+      me.nombre = "";
+      me.descripcion = "";
+      me.contenido = "";
+      me.update = 0;
     }
   },
   mounted: function mounted() {
@@ -37642,6 +37651,8 @@ var render = function() {
             "tbody",
             _vm._l(_vm.arrayTasks, function(task) {
               return _c("tr", { key: task.id }, [
+                _c("td", { domProps: { textContent: _vm._s(task.id) } }),
+                _vm._v(" "),
                 _c("td", { domProps: { textContent: _vm._s(task.nombre) } }),
                 _vm._v(" "),
                 _c("td", {
@@ -37649,6 +37660,14 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("td", { domProps: { textContent: _vm._s(task.contenido) } }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(task.created_at) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(task.updated_at) }
+                }),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -37718,8 +37737,10 @@ var render = function() {
                   _vm.nombre = $event.target.value
                 }
               }
-            }),
-            _vm._v(" "),
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _vm._m(2),
             _vm._v(" "),
             _c("input", {
@@ -37742,8 +37763,10 @@ var render = function() {
                   _vm.descripcion = $event.target.value
                 }
               }
-            }),
-            _vm._v(" "),
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _vm._m(3),
             _vm._v(" "),
             _c("input", {
@@ -37831,11 +37854,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Contenido")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Creado")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Modificado")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Acciones")])
       ])
