@@ -32,6 +32,7 @@
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
+                        <th>Cuil</th>
                         <th>Fax</th>
                         <th>Email</th>
                         <th>Creado</th>
@@ -52,6 +53,7 @@
                                 <td>{{ $clinica->nombre }}</td>
                                 <td>{{ $clinica->direccion }}</td>
                                 <td>{{ $clinica->telefono }}</td>
+                                <td>{{ $clinica->cuil }}</td>
                                 <td>{{ $clinica->fax }}</td>
                                 <td>{{ $clinica->email }}</td>
                                 <td>{{ $clinica->created_at }}</td>

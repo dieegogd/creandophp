@@ -10,6 +10,7 @@ $factory->define(Clinica::class, function (Faker $faker) {
         "nombre"    => $faker->name(),
         "direccion" => $faker->streetAddress(),
         "telefono"  => $faker->phoneNumber(),
+        "cuil"      => $faker->numberBetween(10000000000, 30000000000),
         "fax"       => $faker->phoneNumber(),
         "email"     => $faker->unique()->safeEmail,
     ];

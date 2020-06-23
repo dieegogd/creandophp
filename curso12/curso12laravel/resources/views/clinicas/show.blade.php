@@ -60,6 +60,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="cuil">Cuil:</label>
+                        <input disabled type="text" class="form-control" name="cuil" value="{{ old('cuil', $clinica->cuil) }}" placeholder="Cuil">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-6">

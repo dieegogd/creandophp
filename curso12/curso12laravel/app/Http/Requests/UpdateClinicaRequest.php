@@ -18,6 +18,7 @@ class UpdateClinicaRequest extends StoreClinicaRequest
             "nombre"    => 'required|max:100',
             "direccion" => 'required|max:200',
             "telefono"  => 'max:100',
+            "cuil"      => 'min:9|max:11',
             "fax"       => 'max:100',
             "email"     => 'required|unique:clinicas,email,'.$this->route()->clinica->id.',id|max:255|email',
         ];

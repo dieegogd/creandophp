@@ -13,6 +13,7 @@ class Clinica extends Model
         "nombre",
         "direccion",
         "telefono",
+        "cuil",
         "fax",
         "email",
     ];
