@@ -11,15 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 
-Route::resource('clinicas', 'ClinicaController');
-Route::get(
-    'clinicas/{clinica}/destroyform',
-    [
-        'as' => 'clinicas.destroyform',
-        'uses' => 'ClinicaController@destroyform',
-    ]
-);
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::resource('clinicas', 'ClinicaController');
+    Route::get(
+        'clinicas/{clinica}/destroyform',
+        [
+            'as' => 'clinicas.destroyform',
+            'uses' => 'ClinicaController@destroyform',
+        ]
+    );
+
+});
