@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Clinica;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreClinicaRequest;
+use App\Http\Requests\UpdateClinicaRequest;
 
 class ClinicaController extends Controller
 {
@@ -14,7 +16,9 @@ class ClinicaController extends Controller
      */
     public function index()
     {
-        //
+        $clinicas = Clinica::orderBy('id', 'DESC')->paginate(10);
+        return view('clinicas.index', compact('clinicas'));
+        // clinicas/index.blade.php
     }
 
     /**
@@ -24,7 +28,8 @@ class ClinicaController extends Controller
      */
     public function create()
     {
-        //
+        return view('clinicas.create');
+        // clinicas/create.blade.php
     }
 
     /**
@@ -33,9 +38,14 @@ class ClinicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClinicaRequest $request)
     {
-        //
+        $clinica = new Clinica($request->all());
+        $clinica->save();
+        return redirect(route('clinicas.index'))->with([
+            'message' => 'La clínica se agregó correctamente',
+            'type' => 'success',
+        ]);
     }
 
     /**
@@ -46,7 +56,8 @@ class ClinicaController extends Controller
      */
     public function show(Clinica $clinica)
     {
-        //
+        $clinica = Clinica::findOrFail($clinica->id);
+        return view('clinicas.show', compact('clinica'));
     }
 
     /**
@@ -57,7 +68,8 @@ class ClinicaController extends Controller
      */
     public function edit(Clinica $clinica)
     {
-        //
+        $clinica = Clinica::findOrFail($clinica->id);
+        return view('clinicas.edit', compact('clinica'));
     }
 
     /**
@@ -67,9 +79,26 @@ class ClinicaController extends Controller
      * @param  \App\Clinica  $clinica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clinica $clinica)
+    public function update(UpdateClinicaRequest $request, Clinica $clinica)
     {
-        //
+        $clinica = Clinica::findOrFail($clinica->id);
+        $clinica->update($request->all());
+        return redirect(route('clinicas.index'))->with([
+            'message' => 'La clínica se modificó correctamente',
+            'type' => 'primary',
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Clinica  $clinica
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyform(Clinica $clinica)
+    {
+        $clinica = Clinica::findOrFail($clinica->id);
+        return view('clinicas.destroyform', compact('clinica'));
     }
 
     /**
@@ -80,6 +109,11 @@ class ClinicaController extends Controller
      */
     public function destroy(Clinica $clinica)
     {
-        //
+        $clinica = Clinica::findOrFail($clinica->id);
+        $clinica->delete();
+        return redirect(route('clinicas.index'))->with([
+            'message' => 'La clínica se eliminó correctamente',
+            'type' => 'danger',
+        ]);
     }
 }

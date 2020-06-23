@@ -1,5 +1,6 @@
 <?php
 
+use App\Clinica;
 use Illuminate\Database\Seeder;
 
 class ClinicaSeeder extends Seeder
@@ -11,6 +12,6 @@ class ClinicaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Clinica::class, 25)->create();
     }
 }

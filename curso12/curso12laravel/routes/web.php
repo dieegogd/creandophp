@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('clinicas', 'ClinicaController');
+Route::get(
+    'clinicas/{clinica}/destroyform',
+    [
+        'as' => 'clinicas.destroyform',
+        'uses' => 'ClinicaController@destroyform',
+    ]
+);

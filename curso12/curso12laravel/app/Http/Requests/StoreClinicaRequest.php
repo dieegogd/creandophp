@@ -13,7 +13,23 @@ class StoreClinicaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            "nombre"    => 'Nombre',
+            "direccion" => 'Dirección',
+            "telefono"  => 'Teléfono',
+            "fax"       => 'Fax',
+            "email"     => 'Email',
+        ];
     }
 
     /**
@@ -24,7 +40,11 @@ class StoreClinicaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "nombre"    => 'required|max:100',
+            "direccion" => 'required|max:200',
+            "telefono"  => 'max:100',
+            "fax"       => 'max:100',
+            "email"     => 'required|unique:clinicas|max:255|email',
         ];
     }
 }
