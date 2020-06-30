@@ -36,8 +36,13 @@
                                         @foreach (App\Clinica::FILTERED as $filter)
                                             <td>
                                                 <input
-                                                    type="text"
-                                                    class="form-control form-control-sm"
+                                                    @if (substr($filter, -3, 3) == '_at')
+                                                        type="date"
+                                                        class="form-control form-control-sm datepicker"
+                                                    @else
+                                                        type="text"
+                                                        class="form-control form-control-sm"
+                                                    @endif
                                                     name="search[{{ $filter }}]"
                                                     value="{{ isset($search[$filter]) ? $search[$filter] : '' }}"
                                                 >
