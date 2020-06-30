@@ -18,13 +18,17 @@ class ClinicaController extends Controller
     {
         $clinicas = Clinica::orderBy('id', 'DESC');
 
+        // Search
+        $search = $request->get('search');
+        $clinicas->filterSearchAll($search);
+
         // Paginate
         $paginate = $request->get('paginate') ?? Clinica::PAGINATE_DEFAULT;
 
         // Resultados
         $clinicas = $clinicas->paginate($paginate);
 
-        return view('clinicas.index', compact('clinicas', 'paginate'));
+        return view('clinicas.index', compact('clinicas', 'search', 'paginate'));
         // clinicas/index.blade.php
     }
 
