@@ -14,10 +14,17 @@ class ClinicaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clinicas = Clinica::orderBy('id', 'DESC')->paginate(10);
-        return view('clinicas.index', compact('clinicas'));
+        $clinicas = Clinica::orderBy('id', 'DESC');
+
+        // Paginate
+        $paginate = $request->get('paginate') ?? Clinica::PAGINATE_DEFAULT;
+
+        // Resultados
+        $clinicas = $clinicas->paginate($paginate);
+
+        return view('clinicas.index', compact('clinicas', 'paginate'));
         // clinicas/index.blade.php
     }
 

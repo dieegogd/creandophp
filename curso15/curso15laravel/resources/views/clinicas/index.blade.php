@@ -85,7 +85,12 @@
                                 <tr>
                                     <th colspan="100%">
                                         <div class="float-left mr-3">
-                                            {{ $clinicas->links() }}
+                                            {{ $clinicas->appends(compact('paginate'))->links() }}
+                                        </div>
+                                        <div class="float-left mr-3">
+                                            {{ Form::open(['url' => route('clinicas.index'), 'method' => 'get', 'id' => 'grid_filter_form']) }}
+                                                {{ Form::select('paginate', App\Clinica::PAGINATE_LIST, $paginate, ['class' => 'form-control change-submit', 'data-form' => 'grid_filter_form']) }}
+                                            {{ Form::close() }}
                                         </div>
                                         <div class="float-left mr-3">
                                             {{ $clinicas->total() }} Items.
