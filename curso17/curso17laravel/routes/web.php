@@ -28,5 +28,18 @@ Route::middleware(['auth'])->group(function () {
             'uses' => 'ClinicaController@destroyform',
         ]
     );
-
+    Route::get(
+        'clinicas/{clinica}/restore',
+        [
+            'as' => 'clinicas.restore',
+            'uses' => 'ClinicaController@restore',
+        ]
+    );
+    Route::get(
+        'clinicas/{clinica}/forcedelete',
+        [
+            'as' => 'clinicas.forcedelete',
+            'uses' => 'ClinicaController@forcedelete',
+        ]
+    );
 });

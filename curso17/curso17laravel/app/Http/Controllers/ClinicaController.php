@@ -20,15 +20,24 @@ class ClinicaController extends Controller
 
         // Search
         $search = $request->get('search');
+        $option = $request->get('option');
+
         $clinicas->filterSearchAll($search);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Clinica::PAGINATE_DEFAULT;
 
         // Resultados
-        $clinicas = $clinicas->paginate($paginate);
+        switch ($option) {
+            case 'recycle':
+                $clinicas = $clinicas->onlyTrashed()->paginate($paginate);
+                break;
+            default:
+                $clinicas = $clinicas->paginate($paginate);
+                break;
+        }
 
-        return view('clinicas.index', compact('clinicas', 'search', 'paginate'));
+        return view('clinicas.index', compact('clinicas', 'search', 'paginate', 'option'));
         // clinicas/index.blade.php
     }
 
@@ -123,6 +132,26 @@ class ClinicaController extends Controller
         $clinica = Clinica::findOrFail($clinica->id);
         $clinica->delete();
         return redirect(route('clinicas.index'))->with([
+            'message' => 'La clínica se eliminó correctamente',
+            'type' => 'danger',
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $clinica = Clinica::onlyTrashed()->findOrFail($id);
+        $clinica->restore();
+        return redirect(route('clinicas.index', ['option' => 'recycle']))->with([
+            'message' => 'La clínica se restauró correctamente',
+            'type' => 'success',
+        ]);
+    }
+
+    public function forcedelete($id)
+    {
+        $clinica = Clinica::onlyTrashed()->findOrFail($id);
+        $clinica->forcedelete();
+        return redirect(route('clinicas.index', ['option' => 'recycle']))->with([
             'message' => 'La clínica se eliminó correctamente',
             'type' => 'danger',
         ]);

@@ -75,6 +75,20 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
+                            <div class="form-group">
+                                <label for="created_at">Creado:</label>
+                                <input disabled type="text" class="form-control" name="created_at" value="{{ $clinica->created_at->format('d/m/Y H:i:s') }}">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="updated_at">Modificado:</label>
+                                <input disabled type="text" class="form-control" name="updated_at" value="{{ isset($clinica->updated_at) ? $clinica->updated_at->format('d/m/Y H:i:s') : '' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <a href="{{ route('clinicas.index') }}" class="btn btn-sm btn-secondary">Volver</a>
                         </div>
                     </div>

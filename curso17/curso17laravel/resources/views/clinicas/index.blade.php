@@ -16,9 +16,12 @@
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header bg-dark text-white">
-            <i class="fa fa-group"></i>
+        <h5 class="card-header text-white {{ $option == 'recycle' ? 'bg-success' : 'bg-dark' }}">
+            <i class="fa {{ $option == 'recycle' ? 'fa-trash' : 'fa-group' }}"></i>
             Lista de Clínicas
+            @if ($option == 'recycle')
+            - Papelera
+            @endif
         </h5>
         <div class="card-body">
             <div class="row">
@@ -63,10 +66,21 @@
                                         <th>Fax</th>
                                         <th>Email</th>
                                         <th>Creado</th>
+                                        <th>Modificado</th>
                                         <th>
-                                            <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success">
-                                                <i class="fa fa-plus"></i> Agregar
-                                            </a>
+                                            @if ($option == 'recycle')
+                                                <input type="hidden" name="option" value="recycle">
+                                                <a href="{{ route('clinicas.index') }}" class="btn btn-sm btn-secondary">
+                                                    <i class="fa fa-group"></i> Lista de Clínicas
+                                                </a>
+                                            @else
+                                                <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-plus"></i> Agregar
+                                                </a>
+                                                <button name="option" value="recycle" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-trash"></i> Papelera
+                                                </button>
+                                            @endif
                                         </th>
                                     </tr>
                                 </thead>
@@ -81,19 +95,31 @@
                                                 <td>{{ $clinica->fax }}</td>
                                                 <td>{{ $clinica->email }}</td>
                                                 <td>{{ $clinica->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ isset($clinica->updated_at) ? $clinica->updated_at->format('d/m/Y') : '' }}</td>
                                                 <td style="white-space: nowrap;">
-                                                    <a href="{{ route('clinicas.show', $clinica->id) }}" class="btn btn-sm btn-secondary">
-                                                        <i class="fa fa-eye"></i>
-                                                        Ver
-                                                    </a>
-                                                    <a href="{{ route('clinicas.edit', $clinica->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fa fa-edit"></i>
-                                                        Editar
-                                                    </a>
-                                                    <a href="{{ route('clinicas.destroyform', $clinica->id) }}" class="btn btn-sm btn-danger">
-                                                        <i class="fa fa-trash"></i>
-                                                        Borrar
-                                                    </a>
+                                                    @if ($option == 'recycle')
+                                                        <a href="{{ route('clinicas.restore', $clinica->id) }}" class="btn btn-sm btn-success">
+                                                            <i class="fa fa-recycle"></i>
+                                                            Restaurar
+                                                        </a>
+                                                        <a href="{{ route('clinicas.forcedelete', $clinica->id) }}" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash"></i>
+                                                            Eliminar
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('clinicas.show', $clinica->id) }}" class="btn btn-sm btn-secondary">
+                                                            <i class="fa fa-eye"></i>
+                                                            Ver
+                                                        </a>
+                                                        <a href="{{ route('clinicas.edit', $clinica->id) }}" class="btn btn-sm btn-primary">
+                                                            <i class="fa fa-edit"></i>
+                                                            Editar
+                                                        </a>
+                                                        <a href="{{ route('clinicas.destroyform', $clinica->id) }}" class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash"></i>
+                                                            Borrar
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -109,7 +135,7 @@
                                     <tr>
                                         <th colspan="100%">
                                             <div class="float-left mr-3">
-                                                {{ $clinicas->appends(compact('paginate', 'search'))->links() }}
+                                                {{ $clinicas->appends(compact('paginate', 'search', 'option'))->links() }}
                                             </div>
                                             <div class="float-left mr-3">
                                                 {{ Form::select('paginate', App\Clinica::PAGINATE_LIST, $paginate, ['class' => 'form-control change-submit', 'data-form' => 'grid_filter_form']) }}
