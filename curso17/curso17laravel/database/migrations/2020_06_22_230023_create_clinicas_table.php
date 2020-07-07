@@ -19,6 +19,7 @@ class CreateClinicasTable extends Migration
             $table->string("direccion", 200);
             $table->string("telefono", 100)->nullable();
             $table->string("fax", 100)->nullable();
+            $table->string("cuil", 100)->nullable();
             $table->string("email", 255)->unique();
             $table->softDeletes();
             $table->timestamps();

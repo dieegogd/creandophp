@@ -65,6 +65,7 @@
                                         <th>Teléfono</th>
                                         <th>Fax</th>
                                         <th>Email</th>
+                                        <th>Usuario</th>
                                         <th>Creado</th>
                                         <th>Modificado</th>
                                         <th>
@@ -94,6 +95,7 @@
                                                 <td>{{ $clinica->telefono }}</td>
                                                 <td>{{ $clinica->fax }}</td>
                                                 <td>{{ $clinica->email }}</td>
+                                                <td>{{ isset($clinica->user) ? $clinica->user->name : '-' }}</td>
                                                 <td>{{ $clinica->created_at->format('d/m/Y') }}</td>
                                                 <td>{{ isset($clinica->updated_at) ? $clinica->updated_at->format('d/m/Y') : '' }}</td>
                                                 <td style="white-space: nowrap;">

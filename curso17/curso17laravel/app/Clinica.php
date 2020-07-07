@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,6 +28,7 @@ class Clinica extends Model
         "direccion",
         "telefono",
         "cuil",
+        'user_id',
         "fax",
         "email",
     ];
@@ -55,4 +57,8 @@ class Clinica extends Model
         return $query;
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

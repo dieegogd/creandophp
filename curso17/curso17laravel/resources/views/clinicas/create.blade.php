@@ -79,6 +79,14 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
+                                    <label for="cuil">Usuario:</label>
+                                    {{ Form::select('user_id', App\User::orderBy('name')->pluck('name', 'id'), old('user_id'), ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
                                     <label for="cuil">Cuil:</label>
                                     <input type="text" class="form-control" name="cuil" value="{{ old('cuil') }}" placeholder="Cuil">
                                 </div>
