@@ -30,6 +30,10 @@ class ClinicaController extends Controller
         // Resultados
         switch ($option) {
             case 'recycle':
+                if (!\Auth::user()->hasPermissionTo('clinicas_recycle')) {
+                    abort(403, "User does not have the right permissions.");
+                }
+                \Auth::user()->can('clinicas_recycle');
                 $clinicas = $clinicas->onlyTrashed()->paginate($paginate);
                 break;
             default:
@@ -76,7 +80,7 @@ class ClinicaController extends Controller
      */
     public function show(Clinica $clinica)
     {
-        $clinica = Clinica::findOrFail($clinica->id);
+        #$clinica = Clinica::findOrFail($clinica->id);
         return view('clinicas.show', compact('clinica'));
     }
 
@@ -88,7 +92,7 @@ class ClinicaController extends Controller
      */
     public function edit(Clinica $clinica)
     {
-        $clinica = Clinica::findOrFail($clinica->id);
+        #$clinica = Clinica::findOrFail($clinica->id);
         return view('clinicas.edit', compact('clinica'));
     }
 
@@ -101,7 +105,7 @@ class ClinicaController extends Controller
      */
     public function update(UpdateClinicaRequest $request, Clinica $clinica)
     {
-        $clinica = Clinica::findOrFail($clinica->id);
+        #$clinica = Clinica::findOrFail($clinica->id);
         $clinica->update($request->all());
         return redirect(route('clinicas.index'))->with([
             'message' => 'La clínica se modificó correctamente',

@@ -78,9 +78,11 @@
                                                 <a href="{{ route('clinicas.create') }}" class="btn btn-sm btn-success">
                                                     <i class="fa fa-plus"></i> Agregar
                                                 </a>
-                                                <button name="option" value="recycle" class="btn btn-sm btn-success">
-                                                    <i class="fa fa-trash"></i> Papelera
-                                                </button>
+                                                @can('clinicas_recycle')
+                                                    <button name="option" value="recycle" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-trash"></i> Papelera
+                                                    </button>
+                                                @endcan
                                             @endif
                                         </th>
                                     </tr>
