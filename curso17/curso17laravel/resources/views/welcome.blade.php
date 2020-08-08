@@ -84,6 +84,11 @@
                     Laravel
                 </div>
 
+                <div>{{ \Auth::user()->name }} / {{ \Auth::user()->email }}</div>
+                @foreach(\Auth::user()->roles as $rol)
+                    <div>{{ $rol->name }} / {{ $rol->guard_name }}</div>
+                @endforeach
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>

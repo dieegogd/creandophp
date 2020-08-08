@@ -13,6 +13,7 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
         Permission::create(['name' => 'clinicas_index']);
+        Permission::create(['name' => 'clinicas_index_createdby']);
         Permission::create(['name' => 'clinicas_show']);
         Permission::create(['name' => 'clinicas_create']);
         Permission::create(['name' => 'clinicas_update']);
