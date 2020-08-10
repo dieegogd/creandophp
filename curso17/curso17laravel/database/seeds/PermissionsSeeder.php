@@ -21,5 +21,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'clinicas_recycle']);
         Permission::create(['name' => 'clinicas_restore']);
         Permission::create(['name' => 'clinicas_forcedelete']);
+
+        Permission::create(['name' => 'roles_index']);
+        Permission::create(['name' => 'roles_index_createdby']);
+        Permission::create(['name' => 'roles_show']);
+        Permission::create(['name' => 'roles_store']);
+        Permission::create(['name' => 'roles_update']);
+        Permission::create(['name' => 'roles_destroy']);
     }
 }

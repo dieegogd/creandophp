@@ -2,36 +2,27 @@
 
 namespace App;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Clinica extends Model
+class Rol extends Model
 {
-    use SoftDeletes;
-
     const PAGINATE_LIST = [5 => 5, 10 => 10, 25 => 25, 50 => 50, 100 => 100];
     const PAGINATE_DEFAULT = 10;
 
     const FILTERED = [
         'id',
-        'nombre',
-        'direccion',
-        'telefono',
-        'fax',
-        'email',
+        'name',
+        'guard_name',
         'created_at',
+        'updated_at',
     ];
 
     protected $fillable = [
-        "nombre",
-        "direccion",
-        "telefono",
-        "cuil",
-        'user_id',
-        "fax",
-        "email",
+        "name",
+        "guard_name",
     ];
+
+    protected $table = 'roles';
 
     public function scopeFilterSearchField($query, $search, $filter) {
         $words = explode(" ", $search[$filter]);
@@ -43,16 +34,11 @@ class Clinica extends Model
 
     public function scopeFilterSearchAll($query, $search)
     {
-        foreach (Clinica::FILTERED as $filter) {
+        foreach (Rol::FILTERED as $filter) {
             if (isset($search[$filter]) and $search[$filter]) {
                 $query->filterSearchField($search, $filter);
             }
         }
         return $query;
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }
