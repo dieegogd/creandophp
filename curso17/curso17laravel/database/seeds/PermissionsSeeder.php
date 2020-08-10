@@ -15,7 +15,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'clinicas_index']);
         Permission::create(['name' => 'clinicas_index_createdby']);
         Permission::create(['name' => 'clinicas_show']);
-        Permission::create(['name' => 'clinicas_create']);
+        Permission::create(['name' => 'clinicas_store']);
         Permission::create(['name' => 'clinicas_update']);
         Permission::create(['name' => 'clinicas_destroy']);
         Permission::create(['name' => 'clinicas_recycle']);

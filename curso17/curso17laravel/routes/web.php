@@ -21,10 +21,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('clinicas')->name('clinicas.')->middleware(['permission:clinicas_index'])->group(function () {
-        //Route::resource('clinicas', 'ClinicaController');
-/*
-DELETE  /photos/{photo} destroy photos.destroy
-*/
         Route::middleware('permission:clinicas_index')->get(
             '',
             [
@@ -32,7 +28,7 @@ DELETE  /photos/{photo} destroy photos.destroy
                 'uses' => 'ClinicaController@index',
             ]
         );
-        Route::middleware('permission:clinicas_create')->group(function () {
+        Route::middleware('permission:clinicas_store')->group(function () {
             Route::get(
                 'create',
                 [
@@ -87,19 +83,21 @@ DELETE  /photos/{photo} destroy photos.destroy
                 ]
             );
         });
-        Route::middleware('permission:clinicas_restore')->get(
-            '{clinica}/restore',
-            [
-                'as' => 'restore',
-                'uses' => 'ClinicaController@restore',
-            ]
-        );
-        Route::middleware('permission:clinicas_forcedelete')->get(
-            '{clinica}/forcedelete',
-            [
-                'as' => 'forcedelete',
-                'uses' => 'ClinicaController@forcedelete',
-            ]
-        );
+        Route::middleware('permission:clinicas_recycle')->group(function () {
+            Route::middleware('permission:clinicas_restore')->get(
+                '{clinica}/restore',
+                [
+                    'as' => 'restore',
+                    'uses' => 'ClinicaController@restore',
+                ]
+            );
+            Route::middleware('permission:clinicas_forcedelete')->get(
+                '{clinica}/forcedelete',
+                [
+                    'as' => 'forcedelete',
+                    'uses' => 'ClinicaController@forcedelete',
+                ]
+            );
+        });
     });
 });

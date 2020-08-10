@@ -8,6 +8,16 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateClinicaRequest extends StoreClinicaRequest
 {
     /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return \Auth::user()->hasPermissionTo('clinicas_update');
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array

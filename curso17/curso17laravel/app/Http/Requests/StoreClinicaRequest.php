@@ -13,7 +13,7 @@ class StoreClinicaRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return \Auth::user()->hasPermissionTo('clinicas_store');
     }
 
     /**

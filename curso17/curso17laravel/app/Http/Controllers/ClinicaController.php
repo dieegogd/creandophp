@@ -64,7 +64,7 @@ class ClinicaController extends Controller
      */
     public function store(StoreClinicaRequest $request)
     {
-        $clinica = new Clinica($request->all());
+        $clinica = new Clinica($request->validated());
         $clinica->save();
         return redirect(route('clinicas.index'))->with([
             'message' => 'La clínica se agregó correctamente',
@@ -80,7 +80,6 @@ class ClinicaController extends Controller
      */
     public function show(Clinica $clinica)
     {
-        #$clinica = Clinica::findOrFail($clinica->id);
         return view('clinicas.show', compact('clinica'));
     }
 
@@ -92,7 +91,6 @@ class ClinicaController extends Controller
      */
     public function edit(Clinica $clinica)
     {
-        #$clinica = Clinica::findOrFail($clinica->id);
         return view('clinicas.edit', compact('clinica'));
     }
 
@@ -105,8 +103,7 @@ class ClinicaController extends Controller
      */
     public function update(UpdateClinicaRequest $request, Clinica $clinica)
     {
-        #$clinica = Clinica::findOrFail($clinica->id);
-        $clinica->update($request->all());
+        $clinica->update($request->validated());
         return redirect(route('clinicas.index'))->with([
             'message' => 'La clínica se modificó correctamente',
             'type' => 'primary',
@@ -121,7 +118,6 @@ class ClinicaController extends Controller
      */
     public function destroyform(Clinica $clinica)
     {
-        $clinica = Clinica::findOrFail($clinica->id);
         return view('clinicas.destroyform', compact('clinica'));
     }
 
@@ -133,7 +129,6 @@ class ClinicaController extends Controller
      */
     public function destroy(Clinica $clinica)
     {
-        $clinica = Clinica::findOrFail($clinica->id);
         $clinica->delete();
         return redirect(route('clinicas.index'))->with([
             'message' => 'La clínica se eliminó correctamente',
