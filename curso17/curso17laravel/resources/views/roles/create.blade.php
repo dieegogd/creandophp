@@ -60,7 +60,7 @@
                                             <input id="permission{{ $permiso->id }}" name="permissions[]" value="{{ $permiso->id }}" type="checkbox">
                                             <label for="permission{{ $permiso->id }}">
                                                 {{ $permiso->guard_name }} |
-                                                {{ $permiso->name }}
+                                                {{ __('permissions.'.$permiso->name) }}
                                             </label>
                                         </div>
                                     @endforeach
