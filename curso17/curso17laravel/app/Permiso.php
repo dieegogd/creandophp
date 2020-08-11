@@ -4,11 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Permiso extends Model
 {
-    const PAGINATE_LIST = [5 => 5, 10 => 10, 25 => 25, 50 => 50, 100 => 100];
-    const PAGINATE_DEFAULT = 10;
-
     const FILTERED = [
         'id',
         'name',
@@ -22,7 +19,7 @@ class Rol extends Model
         "guard_name",
     ];
 
-    protected $table = 'roles';
+    protected $table = 'permissions';
 
     public function scopeFilterSearchField($query, $search, $filter) {
         $words = explode(" ", $search[$filter]);
@@ -34,7 +31,7 @@ class Rol extends Model
 
     public function scopeFilterSearchAll($query, $search)
     {
-        foreach (Rol::FILTERED as $filter) {
+        foreach (Permiso::FILTERED as $filter) {
             if (isset($search[$filter]) and $search[$filter]) {
                 $query->filterSearchField($search, $filter);
             }
@@ -42,7 +39,7 @@ class Rol extends Model
         return $query;
     }
 
-    public function permisos() {
-        return $this->belongsToMany('App\Permiso', 'role_has_permissions', 'role_id', 'permission_id');
+    public function roles() {
+        return $this->belongsToMany('App\Rol', 'role_has_permissions', 'permission_id', 'role_id');
     }
 }

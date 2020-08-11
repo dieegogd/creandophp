@@ -53,6 +53,22 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Permisos:</label>
+                                    @foreach (\App\Permiso::all() as $permiso)
+                                        <div>
+                                            <input id="permission{{ $permiso->id }}" name="permissions[]" value="{{ $permiso->id }}" type="checkbox">
+                                            <label for="permission{{ $permiso->id }}">
+                                                {{ $permiso->guard_name }} |
+                                                {{ $permiso->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <button type="submit" class="btn btn-sm btn-success">Agregar</button>
                                 <a href="{{ route('roles.index') }}" class="btn btn-sm btn-link">Cancelar</a>
                             </div>

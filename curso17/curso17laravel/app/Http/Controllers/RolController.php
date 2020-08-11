@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Rol;
+use App\Permiso;
+use App\RolesHasPermissions;
 use App\Http\Requests\StoreRolRequest;
 use App\Http\Requests\UpdateRolRequest;
 
@@ -67,6 +69,14 @@ class RolController extends Controller
     {
         $rol = new Rol($request->validated());
         $rol->save();
+        foreach ($request->get('permissions') as $permiso_id) {
+            $role_has_permissions = new RolesHasPermissions([
+                'role_id'       => $rol->id,
+                'permission_id' => $permiso_id,
+            ]);
+            $role_has_permissions->timestamps = false;
+            $role_has_permissions->save();
+        }
         return redirect(route('roles.index'))->with([
             'message' => 'El rol se agregó correctamente',
             'type' => 'success',
