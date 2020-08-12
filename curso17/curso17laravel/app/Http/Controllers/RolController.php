@@ -30,19 +30,7 @@ class RolController extends Controller
         // Paginate
         $paginate = $request->get('paginate') ?? Rol::PAGINATE_DEFAULT;
 
-        // Resultados
-        switch ($option) {
-            case 'recycle':
-                if (!\Auth::user()->hasPermissionTo('roles_recycle')) {
-                    abort(403, "User does not have the right permissions.");
-                }
-                \Auth::user()->can('roles_recycle');
-                $roles = $roles->onlyTrashed()->paginate($paginate);
-                break;
-            default:
-                $roles = $roles->paginate($paginate);
-                break;
-        }
+        $roles = $roles->paginate($paginate);
 
         return view('roles.index', compact('roles', 'search', 'paginate', 'option'));
         // roles/index.blade.php
