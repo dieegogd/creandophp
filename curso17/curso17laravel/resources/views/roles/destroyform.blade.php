@@ -55,6 +55,16 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
+                                    <label for="name">Permisos:</label>
+                                    @foreach($rol->permisos as $permiso)
+                                        <div>{{ $permiso->guard_name }} &raquo; {{ __('permissions.'.$permiso->name) }}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
                                     <label for="created_at">Creado:</label>
                                     <input disabled type="text" class="form-control" name="created_at" value="{{ $rol->created_at->format('d/m/Y H:i:s') }}">
                                 </div>

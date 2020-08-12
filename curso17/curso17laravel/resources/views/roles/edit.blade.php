@@ -48,7 +48,27 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="guard_name">Ambiente:</label>
-                                    {{ Form::select('guard_name', ['web' => 'web', 'api' => 'api'], old($rol->guard_name, 'guard_name'), ['class' => 'form-control']) }}
+                                    {{ Form::select('guard_name', ['web' => 'web', 'api' => 'api'], old('guard_name', $rol->guard_name), ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="name">Permisos:</label>
+                                    {{ Form::select('permissions[]', \App\Permiso::pluck('name','id'), old('permissions', $rol->permisos->pluck('id')), ['class' => 'form-control', 'multiple' => 'multiple', 'size' => \App\Permiso::count()]) }}
+                                    {{--
+                                    @foreach (\App\Permiso::all() as $permiso)
+                                        <div>
+                                            <input id="permission{{ $permiso->id }}" name="permissions[]" value="{{ $permiso->id }}" type="checkbox"
+                                            @if (in_array($permiso->id, old('permissions', []))) checked="checked"@endif
+                                            />
+                                            <label for="permission{{ $permiso->id }}">
+                                                {{ $permiso->guard_name }} | {{ __('permissions.'.$permiso->name) }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    --}}
                                 </div>
                             </div>
                         </div>

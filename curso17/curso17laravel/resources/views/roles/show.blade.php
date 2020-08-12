@@ -56,6 +56,16 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
+                            <div class="form-group">
+                                <label for="name">Permisos:</label>
+                                @foreach($rol->permisos as $permiso)
+                                    <div>{{ $permiso->guard_name }} &raquo; {{ __('permissions.'.$permiso->name) }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <a href="{{ route('roles.index') }}" class="btn btn-sm btn-secondary">Volver</a>
                         </div>
                     </div>

@@ -115,6 +115,15 @@ class RolController extends Controller
     public function update(UpdateRolRequest $request, Rol $rol)
     {
         $rol->update($request->validated());
+        RolesHasPermissions::where('role_id', $rol->id)->delete();
+        foreach ($request->get('permissions') as $permiso_id) {
+            $role_has_permissions = new RolesHasPermissions([
+                'role_id'       => $rol->id,
+                'permission_id' => $permiso_id,
+            ]);
+            $role_has_permissions->timestamps = false;
+            $role_has_permissions->save();
+        }
         return redirect(route('roles.index'))->with([
             'message' => 'El rol se modificó correctamente',
             'type' => 'primary',
