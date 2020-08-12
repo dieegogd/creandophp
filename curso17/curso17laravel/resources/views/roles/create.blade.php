@@ -41,13 +41,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="name">Nombre:</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre">
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="guard_name">Ambiente:</label>
-                                    {{ Form::select('guard_name', ['web' => 'web', 'api' => 'api'], old('guard_name'), ['class' => 'form-control']) }}
+                                    {{ Form::select('guard_name', ['web' => 'web', 'api' => 'api'], old('guard_name'), ['class' => 'form-control', 'size' => '2']) }}
                                 </div>
                             </div>
                         </div>
@@ -57,10 +57,9 @@
                                     <label for="name">Permisos:</label>
                                     @foreach (\App\Permiso::all() as $permiso)
                                         <div>
-                                            <input id="permission{{ $permiso->id }}" name="permissions[]" value="{{ $permiso->id }}" type="checkbox">
+                                            <input id="permission{{ $permiso->id }}" name="permissions[]" value="{{ $permiso->id }}" type="checkbox"@if (in_array($permiso->id, old('permissions', []))) checked="checked"@endif />
                                             <label for="permission{{ $permiso->id }}">
-                                                {{ $permiso->guard_name }} |
-                                                {{ __('permissions.'.$permiso->name) }}
+                                                {{ $permiso->guard_name }} | {{ __('permissions.'.$permiso->name) }}
                                             </label>
                                         </div>
                                     @endforeach

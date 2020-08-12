@@ -71,9 +71,11 @@
                                                     <i class="fa fa-group"></i> Lista de Roles
                                                 </a>
                                             @else
-                                                <a href="{{ route('roles.create') }}" class="btn btn-sm btn-success">
-                                                    <i class="fa fa-plus"></i> Agregar
-                                                </a>
+                                                @can('roles_store')
+                                                    <a href="{{ route('roles.create') }}" class="btn btn-sm btn-success">
+                                                        <i class="fa fa-plus"></i> Agregar
+                                                    </a>
+                                                @endcan
                                                 @can('roles_recycle')
                                                     <button name="option" value="recycle" class="btn btn-sm btn-success">
                                                         <i class="fa fa-trash"></i> Papelera
@@ -94,27 +96,37 @@
                                                 <td>{{ isset($rol->updated_at) ? $rol->updated_at->format('d/m/Y') : '' }}</td>
                                                 <td style="white-space: nowrap;">
                                                     @if ($option == 'recycle')
-                                                        <a href="{{ route('roles.restore', $rol->id) }}" class="btn btn-sm btn-success">
-                                                            <i class="fa fa-recycle"></i>
-                                                            Restaurar
-                                                        </a>
-                                                        <a href="{{ route('roles.forcedelete', $rol->id) }}" class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                            Eliminar
-                                                        </a>
+                                                        @can('roles_restore')
+                                                            <a href="{{ route('roles.restore', $rol->id) }}" class="btn btn-sm btn-success">
+                                                                <i class="fa fa-recycle"></i>
+                                                                Restaurar
+                                                            </a>
+                                                        @endcan
+                                                        @can('roles_forcedelete')
+                                                            <a href="{{ route('roles.forcedelete', $rol->id) }}" class="btn btn-sm btn-danger">
+                                                                <i class="fa fa-trash"></i>
+                                                                Eliminar
+                                                            </a>
+                                                        @endcan
                                                     @else
-                                                        <a href="{{ route('roles.show', $rol->id) }}" class="btn btn-sm btn-secondary">
-                                                            <i class="fa fa-eye"></i>
-                                                            Ver
-                                                        </a>
-                                                        <a href="{{ route('roles.edit', $rol->id) }}" class="btn btn-sm btn-primary">
-                                                            <i class="fa fa-edit"></i>
-                                                            Editar
-                                                        </a>
-                                                        <a href="{{ route('roles.destroyform', $rol->id) }}" class="btn btn-sm btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                            Borrar
-                                                        </a>
+                                                        @can('roles_show')
+                                                            <a href="{{ route('roles.show', $rol->id) }}" class="btn btn-sm btn-secondary">
+                                                                <i class="fa fa-eye"></i>
+                                                                Ver
+                                                            </a>
+                                                        @endcan
+                                                        @can('roles_update')
+                                                            <a href="{{ route('roles.edit', $rol->id) }}" class="btn btn-sm btn-primary">
+                                                                <i class="fa fa-edit"></i>
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                        @can('roles_destroy')
+                                                            <a href="{{ route('roles.destroyform', $rol->id) }}" class="btn btn-sm btn-danger">
+                                                                <i class="fa fa-trash"></i>
+                                                                Borrar
+                                                            </a>
+                                                        @endcan
                                                     @endif
                                                 </td>
                                             </tr>

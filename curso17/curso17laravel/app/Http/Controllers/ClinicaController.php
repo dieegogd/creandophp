@@ -33,7 +33,6 @@ class ClinicaController extends Controller
                 if (!\Auth::user()->hasPermissionTo('clinicas_recycle')) {
                     abort(403, "User does not have the right permissions.");
                 }
-                \Auth::user()->can('clinicas_recycle');
                 $clinicas = $clinicas->onlyTrashed()->paginate($paginate);
                 break;
             default:
