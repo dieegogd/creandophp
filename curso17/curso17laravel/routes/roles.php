@@ -1,7 +1,7 @@
 <?php
 
 Route::prefix('roles')->name('roles.')->middleware(['permission:roles_index'])->group(function () {
-    Route::middleware('permission:roles_index')->get(
+    Route::get(
         '',
         [
             'as' => 'index',

@@ -1,7 +1,7 @@
 <?php
 
 Route::prefix('clinicas')->name('clinicas.')->middleware(['permission:clinicas_index'])->group(function () {
-    Route::get(#middleware('permission:clinicas_index')->
+    Route::get(
         '',
         [
             'as' => 'index',
