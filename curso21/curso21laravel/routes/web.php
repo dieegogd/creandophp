@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('categorias', 'CategoriaController');
+Route::get(
+    'categorias/{categoria}/destroyform',
+    [
+        'as' => 'categorias.destroyform',
+        'uses' => 'CategoriaController@destroyform'
+    ]
+);
