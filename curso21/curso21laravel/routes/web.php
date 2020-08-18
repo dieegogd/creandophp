@@ -21,11 +21,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('categorias', 'CategoriaController');
-Route::get(
-    'categorias/{categoria}/destroyform',
-    [
-        'as' => 'categorias.destroyform',
-        'uses' => 'CategoriaController@destroyform'
-    ]
-);
+Route::middleware(['auth'])->group(function(){
+    Route::resource('categorias', 'CategoriaController');
+    Route::get(
+        'categorias/{categoria}/destroyform',
+        [
+            'as' => 'categorias.destroyform',
+            'uses' => 'CategoriaController@destroyform'
+        ]
+    );
+});
