@@ -11,12 +11,16 @@ class Categoria extends Model
     const PAGINATE_DEFAULT = 10;
 
     const FILTERED = [
-        'id',
-        'nombre',
+        'id'         => "N°",
+        'nombre'     => "Nombre",
+        'created_at' => "Creado",
+        'updated_at' => "Modificado",
     ];
 
     protected $fillable = [
-        "nombre",
+        'nombre',
+        'created_at',
+        'updated_at',
     ];
 
     public function scopeFilterSearchField($query, $search, $filter) {
@@ -29,9 +33,9 @@ class Categoria extends Model
 
     public function scopeFilterSearchAll($query, $search)
     {
-        foreach (Categoria::FILTERED as $filter) {
-            if (isset($search[$filter]) and $search[$filter]) {
-                $query->filterSearchField($search, $filter);
+        foreach (Categoria::FILTERED as $key => $value) {
+            if (isset($search[$key]) and $search[$key]) {
+                $query->filterSearchField($search, $key);
             }
         }
         return $query;
