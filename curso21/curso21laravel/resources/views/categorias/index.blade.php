@@ -54,7 +54,6 @@
                                 <th>Nombre</th>
                                 <th>Creado</th>
                                 <th>Modificado</th>
-                                <th>Acciones</th>
                                 <th>
                                     <a href="{{ route('categorias.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar</a>
                                 </th>
@@ -68,7 +67,7 @@
                                         <td>{{ $categoria->nombre }}</td>
                                         <td>{{ $categoria->created_at ? Carbon\Carbon::parse($categoria->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                         <td>{{ $categoria->updated_at ? Carbon\Carbon::parse($categoria->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
-                                        <td style="white-space: nowrap;" colspan="2">
+                                        <td style="white-space: nowrap;">
                                             <a href="{{ route('categorias.show', $categoria->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Ver</a>
                                             <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                             <a href="{{ route('categorias.destroyform', $categoria->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>

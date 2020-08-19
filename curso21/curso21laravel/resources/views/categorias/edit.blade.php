@@ -28,7 +28,7 @@
                 @csrf
                 @method('PATCH')
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" class="form-control" name="nombre" value="{{old('nombre', $categoria->nombre)}}" />
