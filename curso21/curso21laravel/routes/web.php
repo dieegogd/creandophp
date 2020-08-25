@@ -30,4 +30,31 @@ Route::middleware(['auth'])->group(function(){
             'uses' => 'CategoriaController@destroyform'
         ]
     );
+
+    Route::resource('localidads', 'LocalidadController');
+    Route::get(
+        'localidads/{localidad}/destroyform',
+        [
+            'as' => 'localidads.destroyform',
+            'uses' => 'LocalidadController@destroyform'
+        ]
+    );
+
+    Route::resource('unidadmedidas', 'UnidadmedidaController');
+    Route::get(
+        'unidadmedidas/{unidadmedida}/destroyform',
+        [
+            'as' => 'unidadmedidas.destroyform',
+            'uses' => 'UnidadmedidaController@destroyform'
+        ]
+    );
+
+    Route::resource('sucursals', 'SucursalController');
+    Route::get(
+        'sucursals/{sucursal}/destroyform',
+        [
+            'as' => 'sucursals.destroyform',
+            'uses' => 'SucursalController@destroyform'
+        ]
+    );
 });
