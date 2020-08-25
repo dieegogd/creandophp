@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('sucursales.index') }}">Lista de Sucursales</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('sucursals.index') }}">Lista de Sucursales</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Editar Sucursal</li>
                 </ol>
             </nav>
@@ -24,7 +24,7 @@
             </div>
             <br />
             @endif
-            <form method="post" action="{{route('sucursales.update', $sucursal->id)}}">
+            <form method="post" action="{{route('sucursals.update', $sucursal->id)}}">
                 @csrf
                 @method('PATCH')
                 <div class="row">
@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-sm btn-success">
                     Guardar
                 </button>
-                <a href="{{route('sucursales.index')}}" class="btn btn-sm btn-link">
+                <a href="{{route('sucursals.index')}}" class="btn btn-sm btn-link">
                     Cancelar
                 </a>
             </form>

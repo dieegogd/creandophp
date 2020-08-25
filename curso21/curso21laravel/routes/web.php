@@ -51,11 +51,11 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
-    Route::resource('sucursales', 'SucursalController');
+    Route::resource('sucursals', 'SucursalController');
     Route::get(
-        'sucursales/{sucursal}/destroyform',
+        'sucursals/{sucursal}/destroyform',
         [
-            'as' => 'sucursales.destroyform',
+            'as' => 'sucursals.destroyform',
             'uses' => 'SucursalController@destroyform'
         ]
     );

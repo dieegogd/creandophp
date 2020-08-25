@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('sucursales.index') }}">Lista de Sucursales</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('sucursals.index') }}">Lista de Sucursales</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Agregar Sucursal</li>
                 </ol>
             </nav>
@@ -24,7 +24,7 @@
             </div>
             <br />
             @endif
-            <form method="post" action="{{route('sucursales.store')}}">
+            <form method="post" action="{{route('sucursals.store')}}">
                 @csrf
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -37,7 +37,7 @@
                 <button type="submit" class="btn btn-sm btn-success">
                     Guardar
                 </button>
-                <a href="{{route('sucursales.index')}}" class="btn btn-sm btn-link">
+                <a href="{{route('sucursals.index')}}" class="btn btn-sm btn-link">
                     Cancelar
                 </a>
             </form>

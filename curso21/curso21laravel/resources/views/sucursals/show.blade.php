@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('sucursales.index') }}">Lista de Sucursales</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('sucursals.index') }}">Lista de Sucursales</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Ver Sucursal</li>
                 </ol>
             </nav>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{route('sucursales.index')}}" class="btn btn-sm btn-success">
+            <a href="{{route('sucursals.index')}}" class="btn btn-sm btn-success">
                 Volver
             </a>
         </div>

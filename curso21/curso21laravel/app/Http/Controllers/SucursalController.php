@@ -29,7 +29,7 @@ class SucursalController extends Controller
 
         $sucursales = $sucursales->paginate($paginate);
 
-        return view('sucursales.index', compact('sucursales', 'search', 'paginate', 'option'));
+        return view('sucursals.index', compact('sucursales', 'search', 'paginate', 'option'));
     }
 
     /**
@@ -39,7 +39,7 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        return view('sucursales.create');
+        return view('sucursals.create');
     }
 
     /**
@@ -52,7 +52,7 @@ class SucursalController extends Controller
     {
         $sucursal = new Sucursal($request->validated());
         $sucursal->save();
-        return redirect(route('sucursales.index'))->with([
+        return redirect(route('sucursals.index'))->with([
             'message' => 'La sucursal se agregó correctamente',
             'type' => 'success',
         ]);
@@ -66,7 +66,7 @@ class SucursalController extends Controller
      */
     public function show(Sucursal $sucursal)
     {
-        return view('sucursales.show', compact('sucursal'));
+        return view('sucursals.show', compact('sucursal'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SucursalController extends Controller
      */
     public function edit(Sucursal $sucursal)
     {
-        return view('sucursales.edit', compact('sucursal'));
+        return view('sucursals.edit', compact('sucursal'));
     }
 
     /**
@@ -90,7 +90,7 @@ class SucursalController extends Controller
     public function update(UpdateSucursalRequest $request, Sucursal $sucursal)
     {
         $sucursal->update($request->validated());
-        return redirect(route('sucursales.index'))->with([
+        return redirect(route('sucursals.index'))->with([
             'message' => 'La sucursal se modificó correctamente',
             'type' => 'primary',
         ]);
@@ -100,12 +100,12 @@ class SucursalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categoria  $categoria
+     * @param  \App\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function destroyform(Categoria $categoria)
+    public function destroyform(Sucursal $sucursal)
     {
-        return view('sucursales.destroyform', compact('sucursal'));
+        return view('sucursals.destroyform', compact('sucursal'));
     }
 
     /**
@@ -117,7 +117,7 @@ class SucursalController extends Controller
     public function destroy(Sucursal $sucursal)
     {
         $sucursal->delete();
-        return redirect(route('sucursales.index'))->with([
+        return redirect(route('sucursals.index'))->with([
             'message' => 'La sucursal se eliminó correctamente',
             'type' => 'danger',
         ]);
