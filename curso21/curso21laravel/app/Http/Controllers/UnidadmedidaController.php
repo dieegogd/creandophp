@@ -53,7 +53,7 @@ class UnidadmedidaController extends Controller
         $unidadmedida = new Unidadmedida($request->validated());
         $unidadmedida->save();
         return redirect(route('unidadmedidas.index'))->with([
-            'message' => 'La unidad medida se agregó correctamente',
+            'message' => 'La unidad de medida se agregó correctamente',
             'type' => 'success',
         ]);
     }
@@ -119,7 +119,7 @@ class UnidadmedidaController extends Controller
     {
         $unidadmedida->delete();
         return redirect(route('unidadmedidas.index'))->with([
-            'message' => 'La categoría se eliminó correctamente',
+            'message' => 'La unidad de medida se eliminó correctamente',
             'type' => 'danger',
         ]);
     }
