@@ -133,19 +133,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('unidadmedidas.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['unidadmedidas']) ? ' active' : '' }}">
                   <i class="fas fa-ruler-combined nav-icon"></i>
                   <p>Unidades de Medida</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('sucursales.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['sucursales']) ? ' active' : '' }}">
                   <i class="fas fa-store nav-icon"></i>
-                  <p>Depósitos</p>
+                  <p>Sucursales</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('localidades.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['localidades']) ? ' active' : '' }}">
                   <i class="fas fa-search-location nav-icon"></i>
                   <p>Localidades</p>
                 </a>
