@@ -31,16 +31,14 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
-
-    Route::resource('localidades', 'LocalidadController');
+    Route::resource('localidads', 'LocalidadController');
     Route::get(
-        'localidades/{localidad}/destroyform',
+        'localidads/{localidad}/destroyform',
         [
-            'as' => 'localidades.destroyform',
+            'as' => 'localidads.destroyform',
             'uses' => 'LocalidadController@destroyform'
         ]
     );
-
 
     Route::resource('unidadmedidas', 'UnidadmedidaController');
     Route::get(

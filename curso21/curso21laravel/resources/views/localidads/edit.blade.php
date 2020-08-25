@@ -6,8 +6,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('localidades.index') }}">Lista de Localidades</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Agregar Localidad</li>
+                    <li class="breadcrumb-item"><a href="{{ route('localidads.index') }}">Lista de Localidades</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar Localidad</li>
                 </ol>
             </nav>
         </div>
@@ -24,20 +24,21 @@
             </div>
             <br />
             @endif
-            <form method="post" action="{{route('localidades.store')}}">
+            <form method="post" action="{{route('localidads.update', $localidad->id)}}">
                 @csrf
+                @method('PATCH')
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Nombre" />
+                            <input type="text" class="form-control" name="nombre" value="{{old('nombre', $localidad->nombre)}}" />
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-sm btn-success">
                     Guardar
                 </button>
-                <a href="{{route('localidades.index')}}" class="btn btn-sm btn-link">
+                <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
                     Cancelar
                 </a>
             </form>

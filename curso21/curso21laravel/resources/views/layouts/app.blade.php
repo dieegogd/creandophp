@@ -118,7 +118,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link{{ Route::is('categorias.*') || Route::is('unidadmedidas.*') || Route::is('sucursals.*') || Route::is('localidades.*') ? ' active' : '' }}">
+            <a href="#" class="nav-link{{ Route::is('categorias.*') || Route::is('unidadmedidas.*') || Route::is('sucursals.*') || Route::is('localidads.*') ? ' active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Catálogos
@@ -145,7 +145,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('localidades.index') }}" class="nav-link{{ Route::is('localidades.*') ? ' active' : '' }}">
+                <a href="{{ route('localidads.index') }}" class="nav-link{{ Route::is('localidads.*') ? ' active' : '' }}">
                   <i class="fas fa-search-location nav-icon"></i>
                   <p>Localidades</p>
                 </a>

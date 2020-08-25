@@ -29,7 +29,7 @@ class LocalidadController extends Controller
 
         $localidades = $localidades->paginate($paginate);
 
-        return view('localidades.index', compact('localidades', 'search', 'paginate', 'option'));
+        return view('localidads.index', compact('localidades', 'search', 'paginate', 'option'));
         // localidades/index.blade.php
     }
 
@@ -40,7 +40,7 @@ class LocalidadController extends Controller
      */
     public function create()
     {
-        return view('localidades.create');
+        return view('localidads.create');
         // localidades/create.blade.php
     }
 
@@ -54,7 +54,7 @@ class LocalidadController extends Controller
     {
         $localidades = new Localidad($request->validated());
         $localidades->save();
-        return redirect(route('localidades.index'))->with([
+        return redirect(route('localidads.index'))->with([
             'message' => 'La localidad se agregó correctamente',
             'type' => 'success',
         ]);
@@ -68,7 +68,7 @@ class LocalidadController extends Controller
      */
     public function show(Localidad $localidad)
     {
-        return view('localidades.show', compact('localidad'));
+        return view('localidads.show', compact('localidad'));
     }
 
     /**
@@ -79,7 +79,7 @@ class LocalidadController extends Controller
      */
     public function edit(Localidad $localidad)
     {
-        return view('localidades.edit', compact('localidad'));
+        return view('localidads.edit', compact('localidad'));
     }
 
     /**
@@ -92,7 +92,7 @@ class LocalidadController extends Controller
     public function update(UpdateLocalidadRequest $request, Localidad $localidad)
     {
         $localidad->update($request->validated());
-        return redirect(route('localidades.index'))->with([
+        return redirect(route('localidads.index'))->with([
             'message' => 'La localidad se modificó correctamente',
             'type' => 'primary',
         ]);
@@ -101,7 +101,7 @@ class LocalidadController extends Controller
 
     public function destroyform(Localidad $localidad)
     {
-        return view('localidades.destroyform', compact('localidad'));
+        return view('localidads.destroyform', compact('localidad'));
     }
 
     /**
@@ -113,7 +113,7 @@ class LocalidadController extends Controller
     public function destroy(Localidad $localidad)
     {
         $localidad->delete();
-        return redirect(route('localidades.index'))->with([
+        return redirect(route('localidads.index'))->with([
             'message' => 'La localidad se eliminó correctamente',
             'type' => 'danger',
         ]);

@@ -22,7 +22,7 @@
         </div>
         <div class="col-12">
             <div class="table-responsive">
-                {{ Form::open(['url' => route('localidades.index'), 'method' => 'get', 'id' => 'grid_filter_form']) }}
+                {{ Form::open(['url' => route('localidads.index'), 'method' => 'get', 'id' => 'grid_filter_form']) }}
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -44,7 +44,7 @@
                                 @endforeach
                                 <td>
                                     <button type="submit" class="btn btn-sm btn-success">Buscar</button>
-                                    <a href="{{ route('localidades.index') }}" class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('localidads.index') }}" class="btn btn-sm btn-secondary">
                                         Limpiar
                                     </a>
                                 </td>
@@ -55,7 +55,7 @@
                                 <th>Creado</th>
                                 <th>Modificado</th>
                                 <th>
-                                    <a href="{{ route('localidades.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar</a>
+                                    <a href="{{ route('localidads.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Agregar</a>
                                 </th>
                             </tr>
                         </thead>
@@ -68,9 +68,9 @@
                                         <td>{{ $localidad->created_at ? Carbon\Carbon::parse($localidad->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                         <td>{{ $localidad->updated_at ? Carbon\Carbon::parse($localidad->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                         <td style="white-space: nowrap;">
-                                            <a href="{{ route('localidades.show', $localidad->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Ver</a>
-                                            <a href="{{ route('localidades.edit', $localidad->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                                            <a href="{{ route('localidades.destroyform', $localidad->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>
+                                            <a href="{{ route('localidads.show', $localidad->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Ver</a>
+                                            <a href="{{ route('localidads.edit', $localidad->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="{{ route('localidads.destroyform', $localidad->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

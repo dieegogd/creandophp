@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('localidades.index') }}">Lista de Localidades</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('localidads.index') }}">Lista de Localidades</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Borrar Localidad</li>
                 </ol>
             </nav>
@@ -24,7 +24,7 @@
             </div>
             <br />
             @endif
-            <form method="post" action="{{route('localidades.destroy', $localidad->id)}}">
+            <form method="post" action="{{route('localidads.destroy', $localidad->id)}}">
                 @csrf
                 @method('DELETE')
                 <div class="row">
@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-sm btn-danger">
                     Borrar
                 </button>
-                <a href="{{route('localidades.index')}}" class="btn btn-sm btn-link">
+                <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
                     Cancelar
                 </a>
             </form>
