@@ -118,7 +118,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['categorias']) ? ' active' : '' }}">
+            <a href="#" class="nav-link{{ Route::is('categorias.*') || Route::is('unidadmedidas.*') || Route::is('sucursales.*') || Route::is('localidades.*') ? ' active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Catálogos
@@ -127,25 +127,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('categorias.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['categorias']) ? ' active' : '' }}">
+                <a href="{{ route('categorias.index') }}" class="nav-link{{ Route::is('categorias.*') ? ' active' : '' }}">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Categorías</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('unidadmedidas.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['unidadmedidas']) ? ' active' : '' }}">
+                <a href="{{ route('unidadmedidas.index') }}" class="nav-link{{ Route::is('unidadmedidas.*') ? ' active' : '' }}">
                   <i class="fas fa-ruler-combined nav-icon"></i>
                   <p>Unidades de Medida</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('sucursales.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['sucursales']) ? ' active' : '' }}">
+                <a href="{{ route('sucursales.index') }}" class="nav-link{{ Route::is('sucursales.*') ? ' active' : '' }}">
                   <i class="fas fa-store nav-icon"></i>
                   <p>Sucursales</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('localidades.index') }}" class="nav-link{{ in_array(substr(Route::current()->uri, 0, 10), ['localidades']) ? ' active' : '' }}">
+                <a href="{{ route('localidades.index') }}" class="nav-link{{ Route::is('localidades.*') ? ' active' : '' }}">
                   <i class="fas fa-search-location nav-icon"></i>
                   <p>Localidades</p>
                 </a>
