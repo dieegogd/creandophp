@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Categoria;
+use App\Unidadmedida;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,14 +13,18 @@ class Articulo extends Model
     const PAGINATE_DEFAULT = 10;
 
     const FILTERED = [
-        'id'         => "N°",
-        'nombre'     => "Nombre",
-        'created_at' => "Creado",
-        'updated_at' => "Modificado",
+        'id'              => "N°",
+        'nombre'          => "Nombre",
+        'categoria_id'    => "Categoría",
+        'unidadmedida_id' => "Unidad de Medida",
+        'created_at'      => "Creado",
+        'updated_at'      => "Modificado",
     ];
 
     protected $fillable = [
         'nombre',
+        'categoria_id',
+        'unidadmedida_id',
         'created_at',
         'updated_at',
     ];
@@ -39,5 +45,15 @@ class Articulo extends Model
             }
         }
         return $query;
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function unidadmedida()
+    {
+        return $this->belongsTo(Unidadmedida::class);
     }
 }

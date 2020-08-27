@@ -24,7 +24,9 @@ class StoreArticuloRequest extends FormRequest
     public function attributes()
     {
         return [
-            "nombre"    => 'Nombre',
+            "nombre"          => 'Nombre',
+            "categoria_id"    => 'Categoría',
+            "unidadmedida_id" => 'Unidad de Medida',
         ];
     }
 
@@ -36,7 +38,9 @@ class StoreArticuloRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre"    => 'required|max:100',
+            "nombre"          => 'required|max:100',
+            "categoria_id"    => 'required|integer',
+            "unidadmedida_id" => 'required|integer',
         ];
     }
 }

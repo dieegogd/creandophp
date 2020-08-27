@@ -39,6 +39,18 @@
                                     <input type="text" class="form-control " name="nombre" value="{{old('nombre')}}" placeholder="Nombre" />
                                 </div>
                             </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                <div class="form-group">
+                                    <label for="cuil">Categoría:</label>
+                                    {{ Form::select('categoria_id', App\Categoria::orderBy('nombre')->pluck('nombre', 'id'), old('categoria_id'), ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                <div class="form-group">
+                                    <label for="cuil">Unidad de Medida:</label>
+                                    {{ Form::select('unidadmedida_id', App\Unidadmedida::orderBy('nombre')->pluck('nombre', 'id'), old('unidadmedida_id'), ['class' => 'form-control']) }}
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-sm btn-success">
                             Guardar

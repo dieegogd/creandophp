@@ -33,7 +33,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            @foreach (App\Categoria::FILTERED as $key => $value)
+                                            @foreach (App\Articulo::FILTERED as $key => $value)
                                                 <td>
                                                     <input
                                                         @if (substr($key, -3, 3) == '_at')
@@ -59,6 +59,8 @@
                                         <tr>
                                             <th>N°</th>
                                             <th>Nombre</th>
+                                            <th>Categoría</th>
+                                            <th>Unidad de Medida</th>
                                             <th>Creado</th>
                                             <th>Modificado</th>
                                             <th>
@@ -72,6 +74,8 @@
                                                 <tr>
                                                     <th scope="row">{{ $articulo->id }}</th>
                                                     <td>{{ $articulo->nombre }}</td>
+                                                    <td>{{ isset($articulo->categoria) ? $articulo->categoria->nombre : '-' }}</td>
+                                                    <td>{{ isset($articulo->unidadmedida) ? $articulo->unidadmedida->nombre : '-' }}</td>
                                                     <td>{{ $articulo->created_at ? Carbon\Carbon::parse($articulo->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td>{{ $articulo->updated_at ? Carbon\Carbon::parse($articulo->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td style="white-space: nowrap;">
