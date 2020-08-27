@@ -38,7 +38,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="nombre">Nombre:</label>
-                                        <input disabled type="text" class="form-control" name="nombre" value="{{ $sucursal->nombre }}" />
+                                        <input disabled type="text" class="form-control" value="{{ $sucursal->nombre }}" />
                                     </div>
                                 </div>
                             </div>

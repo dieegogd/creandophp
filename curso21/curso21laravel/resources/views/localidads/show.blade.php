@@ -25,7 +25,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="nombre">Nombre:</label>
-                                    <input disabled type="text" class="form-control" name="nombre" value="{{ $localidad->nombre }}" />
+                                    <input disabled type="text" class="form-control" value="{{ $localidad->nombre }}" />
                                 </div>
                             </div>
                         </div>
