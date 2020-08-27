@@ -27,34 +27,44 @@
             <form method="post" action="{{route('categorias.update', $categoria->id)}}">
                 @csrf
                 @method('PATCH')
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" value="{{old('nombre', $categoria->nombre)}}" />
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="card-header bg-primary text-white">
+                            <i class="fa fa-list"></i>
+                            Editar Categoría
+                        </h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" class="form-control" name="nombre" value="{{old('nombre', $categoria->nombre)}}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Creado:</label>
+                                        <input disabled type="text" class="form-control" value="{{ $categoria->created_at->format('d/m/Y H:i:s') }}" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Modificado:</label>
+                                        <input disabled type="text" class="form-control" value="{{ $categoria->updated_at->format('d/m/Y H:i:s') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                Guardar
+                            </button>
+                            <a href="{{route('categorias.index')}}" class="btn btn-sm btn-link">
+                                Cancelar
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="form-group">
-                            <label for="nombre">Creado:</label>
-                            <input disabled type="text" class="form-control" value="{{ $categoria->created_at->format('d/m/Y H:i:s') }}" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="form-group">
-                            <label for="nombre">Modificado:</label>
-                            <input disabled type="text" class="form-control" value="{{ $categoria->updated_at->format('d/m/Y H:i:s') }}" />
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-sm btn-success">
-                    Guardar
-                </button>
-                <a href="{{route('categorias.index')}}" class="btn btn-sm btn-link">
-                    Cancelar
-                </a>
             </form>
         </div>
     </div>

@@ -26,20 +26,28 @@
             @endif
             <form method="post" action="{{route('localidads.store')}}">
                 @csrf
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Nombre" />
+                <div class="card">
+                    <h5 class="card-header bg-success text-white">
+                        <i class="fa fa-search-location"></i>
+                        Agregar Localidad
+                    </h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Nombre" />
+                                </div>
+                            </div>
                         </div>
+                        <button type="submit" class="btn btn-sm btn-success">
+                            Guardar
+                        </button>
+                        <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
+                            Cancelar
+                        </a>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-sm btn-success">
-                    Guardar
-                </button>
-                <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
-                    Cancelar
-                </a>
             </form>
         </div>
     </div>

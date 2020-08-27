@@ -27,34 +27,44 @@
             <form method="post" action="{{route('localidads.destroy', $localidad->id)}}">
                 @csrf
                 @method('DELETE')
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input disabled type="text" class="form-control" name="nombre" value="{{ $localidad->nombre }}" />
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="card-header bg-danger text-white">
+                            <i class="fa fa-search-location"></i>
+                            Borrar Localidad
+                        </h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre:</label>
+                                        <input disabled type="text" class="form-control" name="nombre" value="{{ $localidad->nombre }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Creado:</label>
+                                        <input disabled type="text" class="form-control" value="{{ $localidad->created_at->format('d/m/Y H:i:s') }}" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Modificado:</label>
+                                        <input disabled type="text" class="form-control" value="{{ $localidad->updated_at->format('d/m/Y H:i:s') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Borrar
+                            </button>
+                            <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
+                                Cancelar
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="form-group">
-                            <label for="nombre">Creado:</label>
-                            <input disabled type="text" class="form-control" value="{{ $localidad->created_at->format('d/m/Y H:i:s') }}" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <div class="form-group">
-                            <label for="nombre">Modificado:</label>
-                            <input disabled type="text" class="form-control" value="{{ $localidad->updated_at->format('d/m/Y H:i:s') }}" />
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-sm btn-danger">
-                    Borrar
-                </button>
-                <a href="{{route('localidads.index')}}" class="btn btn-sm btn-link">
-                    Cancelar
-                </a>
             </form>
         </div>
     </div>
