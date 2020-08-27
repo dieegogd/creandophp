@@ -152,6 +152,23 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link{{ Route::is('articulos.*') ? ' active' : '' }}">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Almacén
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('articulos.index') }}" class="nav-link{{ Route::is('articulos.*') ? ' active' : '' }}">
+                  <i class="fas fa-boxes nav-ico"></i>
+                  <p>Artículos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
             <li class="nav-item">
               {{ Form::open(['url' => route('logout'), 'method' => 'post']) }}
                 <button type="submit" class="form-control btn btn-secondary text-left">

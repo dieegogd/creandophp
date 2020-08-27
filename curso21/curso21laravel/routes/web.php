@@ -57,4 +57,13 @@ Route::middleware(['auth'])->group(function(){
             'uses' => 'SucursalController@destroyform'
         ]
     );
+
+    Route::resource('articulos', 'ArticuloController');
+    Route::get(
+        'articulos/{articulo}/destroyform',
+        [
+            'as' => 'articulos.destroyform',
+            'uses' => 'ArticuloController@destroyform'
+        ]
+    );
 });

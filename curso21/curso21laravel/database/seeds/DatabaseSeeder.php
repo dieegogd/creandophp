@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UnidadmedidaSeeder::class);
         $this->call(LocalidadSeeder::class);
         $this->call(SucursalSeeder::class);
+        $this->call(ArticuloSeeder::class);
     }
 }
