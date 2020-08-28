@@ -12,8 +12,25 @@ trait FullSearch
     }
 
     public function scopeFilterSearchTable($query, $search, $filter) {
+        $model = substr($filter, 0, -3);
+        $model = '\\App\\'.ucwords($model);
+        $model = \App::make($model);
+        $tid   = $model->getKeyName();
+        $tbl   = $model->getTable();
+        $tbf   = $model->getFillname();
         $table = substr($filter, 0, strlen($filter) - 3)."s";
-        $ids = \DB::table($table)->where("nombre", "LIKE", '%'.$search[$filter].'%')->pluck('id')->toArray();
+
+        $q1 = \DB::table($tbl);
+        $words = explode(" ", $search[$filter]);
+        foreach ($words as $word) {
+            $q1->where(function($q2) use ($tbf, $word) {
+                foreach ($tbf as $fn) {
+                    $q2->orWhere($fn, 'like', '%'.$word.'%');
+                }
+            });
+        }
+        $ids = $q1->pluck($tid);
+
         $words = explode(" ", $search[$filter]);
         $query->whereIn($filter, $ids);
         return $query;
@@ -31,5 +48,10 @@ trait FullSearch
             }
         }
         return $query;
+    }
+
+    public function getFillname()
+    {
+        return $this->fillname;
     }
 }
