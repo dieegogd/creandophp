@@ -18,7 +18,6 @@ trait FullSearch
         $tid   = $model->getKeyName();
         $tbl   = $model->getTable();
         $tbf   = $model->getFillname();
-        $table = substr($filter, 0, strlen($filter) - 3)."s";
 
         $q1 = \DB::table($tbl);
         $words = explode(" ", $search[$filter]);
@@ -31,7 +30,6 @@ trait FullSearch
         }
         $ids = $q1->pluck($tid);
 
-        $words = explode(" ", $search[$filter]);
         $query->whereIn($filter, $ids);
         return $query;
     }
