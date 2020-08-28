@@ -22,7 +22,7 @@ class LocalidadController extends Controller
         $search = $request->get('search');
         $option = $request->get('option');
 
-        $localidades->filterSearchAll($search);
+        $localidades->filterSearchAll($search, Localidad::FILTERED);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Localidad::PAGINATE_DEFAULT;

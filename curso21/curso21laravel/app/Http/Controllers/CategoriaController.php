@@ -22,7 +22,7 @@ class CategoriaController extends Controller
         $search = $request->get('search');
         $option = $request->get('option');
 
-        $categorias->filterSearchAll($search);
+        $categorias->filterSearchAll($search, Categoria::FILTERED);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Categoria::PAGINATE_DEFAULT;

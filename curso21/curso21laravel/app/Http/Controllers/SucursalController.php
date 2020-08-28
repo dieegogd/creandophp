@@ -22,7 +22,7 @@ class SucursalController extends Controller
         $search = $request->get('search');
         $option = $request->get('option');
 
-        $sucursales->filterSearchAll($search);
+        $sucursales->filterSearchAll($search, Sucursal::FILTERED);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Sucursal::PAGINATE_DEFAULT;

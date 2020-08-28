@@ -22,7 +22,7 @@ class UnidadmedidaController extends Controller
         $search = $request->get('search');
         $option = $request->get('option');
 
-        $unidadmedidas->filterSearchAll($search);
+        $unidadmedidas->filterSearchAll($search, Unidadmedida::FILTERED);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Unidadmedida::PAGINATE_DEFAULT;

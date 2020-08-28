@@ -22,7 +22,7 @@ class ArticuloController extends Controller
         $search = $request->get('search');
         $option = $request->get('option');
 
-        $articulos->filterSearchAll($search);
+        $articulos->filterSearchAll($search, Articulo::FILTERED);
 
         // Paginate
         $paginate = $request->get('paginate') ?? Articulo::PAGINATE_DEFAULT;
