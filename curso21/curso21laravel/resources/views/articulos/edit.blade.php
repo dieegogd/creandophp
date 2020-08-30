@@ -43,13 +43,13 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="cuil">Categoría:</label>
+                                        <label for="categoria_id">Categoría:</label>
                                         {{ Form::select('categoria_id', App\Categoria::orderBy('nombre')->pluck('nombre', 'id'), old('categoria_id', $articulo->categoria_id), ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="cuil">Unidad de Medida:</label>
+                                        <label for="unidadmedida_id">Unidad de Medida:</label>
                                         {{ Form::select('unidadmedida_id', App\Unidadmedida::orderBy('nombre')->pluck('nombre', 'id'), old('unidadmedida_id', $articulo->unidadmedida_id), ['class' => 'form-control']) }}
                                     </div>
                                 </div>
@@ -57,13 +57,13 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Creado:</label>
+                                        <label>Creado:</label>
                                         <input disabled type="text" class="form-control" value="{{ $articulo->created_at->format('d/m/Y H:i:s') }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Modificado:</label>
+                                        <label>Modificado:</label>
                                         <input disabled type="text" class="form-control" value="{{ $articulo->updated_at->format('d/m/Y H:i:s') }}" />
                                     </div>
                                 </div>

@@ -37,19 +37,19 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
+                                        <label>Nombre:</label>
                                         <input disabled type="text" class="form-control" value="{{ $articulo->nombre }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Categoría:</label>
+                                        <label>Categoría:</label>
                                         <input disabled type="text" class="form-control" value="{{ isset($articulo->categoria) ? $articulo->categoria->nombre : '-' }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Unidad de Medida:</label>
+                                        <label>Unidad de Medida:</label>
                                         <input disabled type="text" class="form-control" value="{{ isset($articulo->unidadmedida) ? $articulo->unidadmedida->nombre : '-' }}" />
                                     </div>
                                 </div>
@@ -57,13 +57,13 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Creado:</label>
+                                        <label>Creado:</label>
                                         <input disabled type="text" class="form-control" value="{{ $articulo->created_at->format('d/m/Y H:i:s') }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
-                                        <label for="nombre">Modificado:</label>
+                                        <label>Modificado:</label>
                                         <input disabled type="text" class="form-control" value="{{ $articulo->updated_at->format('d/m/Y H:i:s') }}" />
                                     </div>
                                 </div>
