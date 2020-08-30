@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Traits\FullSearch;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Unidadmedida extends Model

@@ -5,7 +5,6 @@ namespace App;
 use App\Categoria;
 use App\Traits\FullSearch;
 use App\Unidadmedida;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Articulo extends Model

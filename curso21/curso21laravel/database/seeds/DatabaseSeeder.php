@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LocalidadSeeder::class);
         $this->call(SucursalSeeder::class);
         $this->call(ArticuloSeeder::class);
+        $this->call(ListaprecioSeeder::class);
     }
 }

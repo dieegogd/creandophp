@@ -66,4 +66,12 @@ Route::middleware(['auth'])->group(function(){
             'uses' => 'ArticuloController@destroyform'
         ]
     );
+    Route::resource('listaprecios', 'ListaprecioController');
+    Route::get(
+        'listaprecios/{listaprecio}/destroyform',
+        [
+            'as' => 'listaprecios.destroyform',
+            'uses' => 'ListaprecioController@destroyform'
+        ]
+    );
 });

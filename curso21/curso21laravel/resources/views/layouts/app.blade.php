@@ -168,6 +168,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('listaprecios.index') }}" class="nav-link{{ Route::is('listaprecios.*') ? ' active' : '' }}">
+                  <i class="fas fa-money nav-ico"></i>
+                  <p>Lista de Precios</p>
+                </a>
+              </li>
+            </ul>
           </li>
             <li class="nav-item">
               {{ Form::open(['url' => route('logout'), 'method' => 'post']) }}
