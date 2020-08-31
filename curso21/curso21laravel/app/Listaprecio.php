@@ -18,9 +18,9 @@ class Listaprecio extends Model
 
     const FILTERED = [
         'id'           => "N°",
-        'precio'       => "Precio",
         'articulo_id'  => "Artículo",
         'localidad_id' => "Localidad",
+        'precio'       => "Precio",
         'created_at'   => "Creado",
         'updated_at'   => "Modificado",
     ];
