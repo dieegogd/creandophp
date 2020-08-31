@@ -153,7 +153,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link{{ Route::is('articulos.*') ? ' active' : '' }}">
+            <a href="#" class="nav-link{{ Route::is('articulos.*') || Route::is('listaprecios.*') ? ' active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Almacén
