@@ -177,6 +177,23 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link{{ Route::is('usuarios.*') ? ' active' : '' }}">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Sistema
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('usuarios.index') }}" class="nav-link{{ Route::is('usuarios.*') ? ' active' : '' }}">
+                  <i class="fas fa-users nav-ico"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
             <li class="nav-item">
               {{ Form::open(['url' => route('logout'), 'method' => 'post']) }}
                 <button type="submit" class="form-control btn btn-secondary text-left">

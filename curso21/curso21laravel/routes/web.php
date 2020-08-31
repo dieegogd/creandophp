@@ -22,6 +22,15 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function(){
+    Route::resource('usuarios', 'UsuarioController');
+    Route::get(
+        'usuarios/{usuario}/destroyform',
+        [
+            'as' => 'usuarios.destroyform',
+            'uses' => 'UsuarioController@destroyform'
+        ]
+    );
+
     Route::resource('categorias', 'CategoriaController');
     Route::get(
         'categorias/{categoria}/destroyform',
@@ -66,6 +75,7 @@ Route::middleware(['auth'])->group(function(){
             'uses' => 'ArticuloController@destroyform'
         ]
     );
+
     Route::resource('listaprecios', 'ListaprecioController');
     Route::get(
         'listaprecios/{listaprecio}/destroyform',
