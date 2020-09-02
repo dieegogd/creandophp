@@ -17,6 +17,7 @@ class CreateSucursalsTable extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

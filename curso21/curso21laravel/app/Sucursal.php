@@ -4,10 +4,12 @@ namespace App;
 
 use App\Traits\FullSearch;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sucursal extends Model
 {
     use FullSearch;
+    use SoftDeletes;
 
 	const PAGINATE_LIST = [5 => 5, 10 => 10, 25 => 25, 50 => 50, 100 => 100];
     const PAGINATE_DEFAULT = 10;

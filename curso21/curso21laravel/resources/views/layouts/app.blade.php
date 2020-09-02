@@ -176,6 +176,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('clientes.index') }}" class="nav-link{{ Route::is('clientes.*') ? ' active' : '' }}">
+                  <i class="fas fa-id-badge nav-ico"></i>
+                  <p>Clientes</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link{{ Route::is('usuarios.*') ? ' active' : '' }}">

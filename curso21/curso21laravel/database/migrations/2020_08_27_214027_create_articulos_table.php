@@ -21,6 +21,7 @@ class CreateArticulosTable extends Migration
             $table->bigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
