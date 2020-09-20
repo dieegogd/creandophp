@@ -93,4 +93,31 @@ Route::middleware(['auth'])->group(function(){
             'uses' => 'ClienteController@destroyform'
         ]
     );
+
+    Route::resource('articuloxsucursales', 'ArticuloxsucursaleController');
+    Route::get(
+        'articuloxsucursales/{articuloxsucursale}/destroyform',
+        [
+            'as' => 'articuloxsucursales.destroyform',
+            'uses' => 'ArticuloxsucursaleController@destroyform'
+        ]
+    );
+
+    Route::resource('ventas', 'VentaController');
+    Route::get(
+        'ventas/{venta}/destroyform',
+        [
+            'as' => 'ventas.destroyform',
+            'uses' => 'VentaController@destroyform'
+        ]
+    );
+
+    Route::resource('ventadetalles', 'VentadetalleController');
+    Route::get(
+        'ventadetalles/{ventadetalle}/destroyform',
+        [
+            'as' => 'ventadetalles.destroyform',
+            'uses' => 'VentadetalleController@destroyform'
+        ]
+    );
 });

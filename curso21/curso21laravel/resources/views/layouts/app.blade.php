@@ -153,7 +153,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link{{ Route::is('articulos.*') || Route::is('listaprecios.*') ? ' active' : '' }}">
+            <a href="#" class="nav-link{{ Route::is('articulos.*') || Route::is('listaprecios.*') || Route::is('clientes.*') || Route::is('articuloxsucursales.*') || Route::is('ventas.*') ? ' active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Almacén
@@ -179,8 +179,24 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('clientes.index') }}" class="nav-link{{ Route::is('clientes.*') ? ' active' : '' }}">
-                  <i class="fas fa-id-badge nav-ico"></i>
+                  <i class="fa fa-id-badge nav-ico"></i>
                   <p>Clientes</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('articuloxsucursales.index') }}" class="nav-link{{ Route::is('articuloxsucursales.*') ? ' active' : '' }}">
+                  <i class="fas fa-box-full nav-ico"></i>
+                  <p>Artículos por Sucursales</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('ventas.index') }}" class="nav-link{{ Route::is('ventas.*') ? ' active' : '' }}">
+                  <i class="fas fa-box-full nav-ico"></i>
+                  <p>Ventas</p>
                 </a>
               </li>
             </ul>
