@@ -48,13 +48,13 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="existencia">Existencia:</label>
-                                    <input type="text" class="form-control " name="existencia" value="{{old('existencia')}}" placeholder="Existencia" />
+                                    <input type="numeric" class="form-control " name="existencia" value="{{old('existencia')}}" placeholder="Existencia" />
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="stockminimo">Stock Minimo:</label>
-                                    <input type="text" class="form-control " name="stockminimo" value="{{old('stockminimo')}}" placeholder="Stockminimo" />
+                                    <input type="numeric" class="form-control " name="stockminimo" value="{{old('stockminimo')}}" placeholder="Stockminimo" />
                                 </div>
                             </div>
                         </div>

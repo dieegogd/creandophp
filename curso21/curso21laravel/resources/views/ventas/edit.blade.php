@@ -38,7 +38,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="fecha">Fecha:</label>
-                                        <input type="text" class="form-control" name="fecha" value="{{old('fecha', $venta->fecha)}}" />
+                                        <input type="date" class="form-control" name="fecha" value="{{old('fecha', $venta->fecha)}}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -62,7 +62,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="total">Total:</label>
-                                        <input type="text" class="form-control" name="total" value="{{old('total', $venta->total)}}" />
+                                        <input type="number" class="form-control" name="total" value="{{old('total', $venta->total)}}" />
                                     </div>
                                 </div>
                             </div>

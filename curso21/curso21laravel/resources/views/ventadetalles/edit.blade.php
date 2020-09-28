@@ -50,19 +50,19 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="cantidad">Cantidad:</label>
-                                        <input type="text" class="form-control" name="cantidad" value="{{old('cantidad', $ventadetalle->cantidad)}}" />
+                                        <input type="numeric" class="form-control" name="cantidad" value="{{old('cantidad', $ventadetalle->cantidad)}}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="precio">Precio:</label>
-                                        <input type="text" class="form-control" name="precio" value="{{old('precio', $ventadetalle->precio)}}" />
+                                        <input type="numeric" class="form-control" name="precio" value="{{old('precio', $ventadetalle->precio)}}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="subtotal">SubTotal:</label>
-                                        <input type="text" class="form-control" name="subtotal" value="{{old('subtotal', $ventadetalle->subtotal)}}" />
+                                        <input type="numeric" class="form-control" name="subtotal" value="{{old('subtotal', $ventadetalle->subtotal)}}" />
                                     </div>
                                 </div>
                             </div>

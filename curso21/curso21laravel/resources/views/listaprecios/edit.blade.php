@@ -50,7 +50,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                     <div class="form-group">
                                         <label for="precio">Precio:</label>
-                                        <input type="text" class="form-control" name="precio" value="{{old('precio', $listaprecio->precio)}}" />
+                                        <input type="numeric" class="form-control" name="precio" value="{{old('precio', $listaprecio->precio)}}" />
                                     </div>
                                 </div>
                             </div>
