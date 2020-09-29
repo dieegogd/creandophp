@@ -123,4 +123,21 @@ class ClienteController extends Controller
             'type' => 'danger',
         ]);
     }
+
+    /**
+     * Autocomplete the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function autocompletar(Request $request)
+    {
+        $term = explode(" ", $request->get('term'));
+        $query = Cliente::select(['id', 'id as value', 'nombre as label']);
+        foreach ($term as $t) {
+            $query->where('nombre', 'LIKE', "%{$t}%");
+        }
+        $query = $query->get();
+        $query = $query->toJson();
+        return $query;
+    }
 }

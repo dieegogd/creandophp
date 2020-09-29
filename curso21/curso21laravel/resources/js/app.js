@@ -6,3 +6,11 @@
 
 require('./bootstrap');
 require('admin-lte');
+
+window.jQuery = require('jquery');
+window.$ = window.jQuery;
+
+require('jquery-ui/ui/widgets/autocomplete');
+
+//import $ from 'jquery';
+//window.$ = window.jQuery = $;

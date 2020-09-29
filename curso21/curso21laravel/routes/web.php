@@ -85,6 +85,13 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
+    Route::get(
+        'clientes/autocompletar',
+        [
+            'as' => 'clientes.autocompletar',
+            'uses' => 'ClienteController@autocompletar'
+        ]
+    );
     Route::resource('clientes', 'ClienteController');
     Route::get(
         'clientes/{cliente}/destroyform',

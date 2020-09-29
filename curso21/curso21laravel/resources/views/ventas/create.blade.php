@@ -43,22 +43,23 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="cuil">cliente:</label>
-                                    {{ Form::select('cliente_id', App\Cliente::orderBy('nombre')->pluck('nombre', 'id'), old('cliente_id'), ['class' => 'form-control']) }}
+                                    <input type="text" class="form-control" value="" id="cliente_nombre" placeholder="Cliente" />
+                                    <input type="hidden" name="cliente_id" value="" />
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="cuil">Sucursal:</label>
-                                    {{ Form::select('sucursal_id', App\Sucursal::orderBy('nombre')->pluck('nombre', 'id'), old('sucursal_id'), ['class' => 'form-control']) }}
+                                    {{ Form::select('sucursal_id', App\Sucursal::orderBy('nombre')->pluck('nombre', 'id'), old('sucursal_id'), ['class' => 'form-control', 'size' => 10]) }}
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="cuil">Localidad:</label>
-                                    {{ Form::select('localidad_id', App\Localidad::orderBy('nombre')->pluck('nombre', 'id'), old('localidad'), ['class' => 'form-control']) }}
+                                    {{ Form::select('localidad_id', App\Localidad::orderBy('nombre')->pluck('nombre', 'id'), old('localidad'), ['class' => 'form-control', 'size' => 10]) }}
                                 </div>
                             </div>
-                            
+
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="total">Total:</label>
@@ -77,4 +78,18 @@
             </form>
         </div>
     </div>
+    <script>
+    $(function() {
+        $('#cliente_nombre').autocomplete({
+            source: "{{ route('clientes.autocompletar') }}",
+            minLength: 1,
+            select: function( event, ui ) {
+                $('#cliente_nombre').val(ui.item.label);
+                $('input[name="cliente_id"]').val(ui.item.value);
+
+                return false;
+            }
+        });
+    });
+    </script>
 @endsection
