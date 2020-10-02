@@ -4,8 +4,9 @@ namespace App;
 
 use App\Cliente;
 use App\Localidad;
-use App\Traits\FullSearch;
 use App\Sucursal;
+use App\Ventadetalle;
+use App\Traits\FullSearch;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,7 +36,6 @@ class Venta extends Model
         'cliente_id',
         'sucursal_id',
         'localidad_id',
-        'total',
         'created_at',
         'updated_at',
     ];
@@ -49,9 +49,14 @@ class Venta extends Model
     {
         return $this->belongsTo(Sucursal::class);
     }
+
     public function localidad()
     {
         return $this->belongsTo(Localidad::class);
     }
 
+    public function ventadetalle()
+    {
+        return $this->hasMany(Ventadetalle::class);
+    }
 }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Venta;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreVentaRequest;
 use App\Http\Requests\UpdateVentaRequest;
+use App\Venta;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
 {
@@ -55,8 +56,9 @@ class VentaController extends Controller
     public function store(StoreVentaRequest $request)
     {
         $venta = new Venta($request->validated());
+        $venta->total = 0;
         $venta->save();
-        return redirect(route('ventas.index'))->with([
+        return redirect(route('ventadetalles.detalle', $venta->id))->with([
             'message' => 'La venta se agregó correctamente',
             'type' => 'success',
         ]);
@@ -120,7 +122,10 @@ class VentaController extends Controller
      */
     public function destroy(Venta $venta)
     {
-        $venta->delete();
+        DB::transaction(function() use ($venta) {
+            $venta->ventadetalle()->delete();
+            $venta->delete();
+        });
         return redirect(route('ventas.index'))->with([
             'message' => 'La venta se eliminó correctamente',
             'type' => 'danger',

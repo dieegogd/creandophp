@@ -67,6 +67,13 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
+    Route::get(
+        'articulos/autocompletar/{sucursal}/{localidad}',
+        [
+            'as' => 'articulos.autocompletar',
+            'uses' => 'ArticuloController@autocompletar'
+        ]
+    );
     Route::resource('articulos', 'ArticuloController');
     Route::get(
         'articulos/{articulo}/destroyform',
@@ -110,7 +117,9 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
-    Route::resource('ventas', 'VentaController');
+    Route::resource('ventas', 'VentaController')->except([
+        'edit', 'update'
+    ]);
     Route::get(
         'ventas/{venta}/destroyform',
         [
@@ -119,7 +128,16 @@ Route::middleware(['auth'])->group(function(){
         ]
     );
 
-    Route::resource('ventadetalles', 'VentadetalleController');
+    Route::get(
+        'ventadetalles/{venta}/detalle',
+        [
+            'as' => 'ventadetalles.detalle',
+            'uses' => 'VentadetalleController@detalle'
+        ]
+    );
+    Route::resource('ventadetalles', 'VentadetalleController')->except([
+        'edit', 'update'
+    ]);
     Route::get(
         'ventadetalles/{ventadetalle}/destroyform',
         [

@@ -78,13 +78,12 @@
                                                     <td>{{ isset($ventadetalle->venta) ? $ventadetalle->venta->id : '-' }}</td>
                                                     <td>{{ isset($ventadetalle->articulo) ? $ventadetalle->articulo->nombre : '-' }}</td>
                                                     <td> {{ $ventadetalle->cantidad }}</td>
-                                                    <td> {{ $ventadetalle->precio }}</td>
-                                                    <td> {{ $ventadetalle->subtotal }}</td>
+                                                    <td>$ {{ $ventadetalle->precio }}</td>
+                                                    <td>$ {{ $ventadetalle->subtotal }}</td>
                                                     <td>{{ $ventadetalle->created_at ? Carbon\Carbon::parse($ventadetalle->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td>{{ $ventadetalle->updated_at ? Carbon\Carbon::parse($ventadetalle->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <a href="{{ route('ventadetalles.show', $ventadetalle->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Ver</a>
-                                                        <a href="{{ route('ventadetalles.edit', $ventadetalle->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                                         <a href="{{ route('ventadetalles.destroyform', $ventadetalle->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>
                                                     </td>
                                                 </tr>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticuloRequest;
 use App\Http\Requests\UpdateArticuloRequest;
+use App\Localidad;
+use App\Sucursal;
+use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
 {
@@ -122,5 +124,32 @@ class ArticuloController extends Controller
             'message' => 'La artículo se eliminó correctamente',
             'type' => 'danger',
         ]);
+    }
+
+    /**
+     * Autocomplete the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function autocompletar(Request $request, Sucursal $sucursal, Localidad $localidad)
+    {
+        $term = explode(" ", $request->get('term'));
+        $query = Articulo::select([
+            'articulos.id',
+            'articulos.id as value',
+            'articulos.nombre as label',
+            'listaprecios.precio'
+        ]);
+        $query->join('articuloxsucursales', 'articulos.id', '=', 'articuloxsucursales.articulo_id');
+        $query->where('articuloxsucursales.sucursal_id', '=', $sucursal->id);
+        $query->join('listaprecios', 'articulos.id', '=', 'listaprecios.articulo_id');
+        $query->where('listaprecios.localidad_id', '=', $localidad->id);
+        foreach ($term as $t) {
+            $query->where('articulos.nombre', 'LIKE', "%{$t}%");
+        }
+        $query->groupBy(['articulos.id', 'listaprecios.precio']);
+        $query = $query->get();
+        $query = $query->toJson();
+        return $query;
     }
 }

@@ -34,7 +34,6 @@ class Ventadetalle extends Model
         'articulo_id',
         'cantidad',
         'precio',
-        'subtotal',
         'created_at',
         'updated_at',
     ];

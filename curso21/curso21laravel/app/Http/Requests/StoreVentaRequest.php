@@ -29,7 +29,6 @@ class StoreVentaRequest extends FormRequest
             "cliente_id"   => 'Cliente',
             "sucursal_id"  => 'Sucursal',
             "localidad_id" => 'Localidad',
-            "total"        => 'Total',
         ];
     }
 
@@ -45,7 +44,6 @@ class StoreVentaRequest extends FormRequest
             "cliente_id"     => 'required|integer',
             "sucursal_id"    => 'required|integer',
             "localidad_id"   => 'required|integer',
-            "total"          => 'required|numeric',
         ];
     }
 }

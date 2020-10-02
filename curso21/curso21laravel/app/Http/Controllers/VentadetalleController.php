@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Ventadetalle;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreVentadetalleRequest;
 use App\Http\Requests\UpdateVentadetalleRequest;
+use App\Venta;
+use App\Ventadetalle;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VentadetalleController extends Controller
 {
@@ -23,9 +25,6 @@ class VentadetalleController extends Controller
         $option = $request->get('option');
 
         $ventadetalles->filterSearchAll($search, Ventadetalle::FILTERED);
-
-
-
 
         // Paginate
         $paginate = $request->get('paginate') ?? Ventadetalle::PAGINATE_DEFAULT;
@@ -54,9 +53,16 @@ class VentadetalleController extends Controller
      */
     public function store(StoreVentadetalleRequest $request)
     {
-        $ventadetalle = new Ventadetalle($request->validated());
-        $ventadetalle->save();
-        return redirect(route('ventadetalles.index'))->with([
+        $ventadetalle = null;
+        DB::transaction(function() use ($request, &$ventadetalle) {
+            $ventadetalle = new Ventadetalle($request->validated());
+            $ventadetalle->subtotal = $ventadetalle->cantidad * $ventadetalle->precio;
+            $ventadetalle->save();
+            $ventadetalle->venta->total = $ventadetalle->venta->total + $ventadetalle->subtotal;
+            $ventadetalle->venta->save();
+        });
+
+        return redirect(route('ventadetalles.detalle', $ventadetalle->venta->id))->with([
             'message' => 'El detalle de venta se agregó correctamente',
             'type' => 'success',
         ]);
@@ -119,10 +125,39 @@ class VentadetalleController extends Controller
      */
     public function destroy(Ventadetalle $ventadetalle)
     {
-        $ventadetalle->delete();
-        return redirect(route('ventadetalles.index'))->with([
+        DB::transaction(function() use ($ventadetalle) {
+            $ventadetalle->venta->total = $ventadetalle->venta->total - $ventadetalle->subtotal;
+            $ventadetalle->venta->save();
+            $ventadetalle->delete();
+        });
+        return redirect(route('ventadetalles.detalle', $ventadetalle->venta->id))->with([
             'message' => 'El detalle de venta se eliminó correctamente',
             'type' => 'danger',
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     * @param  \App\Venta  $venta
+     */
+    public function detalle(Request $request, Venta $venta)
+    {
+        $ventadetalles = Ventadetalle::orderBy('id', 'DESC');
+
+        // Search
+        $search = $request->get('search');
+        $option = $request->get('option');
+
+        $ventadetalles->filterSearchAll($search, Ventadetalle::FILTERED);
+        $ventadetalles->where('venta_id', '=', $venta->id);
+
+        // Paginate
+        $paginate = $request->get('paginate') ?? Ventadetalle::PAGINATE_DEFAULT;
+
+        $ventadetalles = $ventadetalles->paginate($paginate);
+
+        return view('ventadetalles.detalle', compact('venta', 'ventadetalles', 'search', 'paginate', 'option'));
     }
 }

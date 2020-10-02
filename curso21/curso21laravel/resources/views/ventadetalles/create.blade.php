@@ -49,19 +49,19 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="cantidad">Cantidad:</label>
-                                    <input type="numeric" class="form-control " name="cantidad" value="{{old('cantidad')}}" placeholder="Cantidad" />
+                                    <input type="numeric" class="form-control calculateSubtotal" name="cantidad" value="{{old('cantidad')}}" placeholder="Cantidad" />
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="precio">Precio:</label>
-                                    <input type="numeric" class="form-control " name="precio" value="{{old('precio')}}" placeholder="Precio" />
+                                    <input type="numeric" class="form-control calculateSubtotal" name="precio" value="{{old('precio')}}" placeholder="Precio" />
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="subtotal">SubTotal:</label>
-                                    <input type="numeric" class="form-control " name="subtotal" value="{{old('subtotal')}}" placeholder="SubTotal" />
+                                    <input id="subtotal" type="numeric" class="form-control" value="0" readonly="readonly" disabled="disabled" />
                                 </div>
                             </div>
                         </div>
@@ -76,4 +76,13 @@
             </form>
         </div>
     </div>
+    <script>
+    $(function(){
+        $('.calculateSubtotal').keyup(function(){
+            $('#subtotal').val(
+                $('[name="cantidad"].calculateSubtotal').val() * $('[name="precio"].calculateSubtotal').val()
+            );
+        });
+    });
+    </script>
 @endsection

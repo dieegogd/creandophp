@@ -30,7 +30,7 @@
                 <div class="card">
                     <h5 class="card-header bg-success text-white">
                         <i class="fas fa-box-full"></i>
-                        Agregar artículo en una sucursal
+                        Agregar venta en una sucursal
                     </h5>
                     <div class="card-body">
                         <div class="row">
@@ -59,16 +59,9 @@
                                     {{ Form::select('localidad_id', App\Localidad::orderBy('nombre')->pluck('nombre', 'id'), old('localidad'), ['class' => 'form-control', 'size' => 10]) }}
                                 </div>
                             </div>
-
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                <div class="form-group">
-                                    <label for="total">Total:</label>
-                                    <input type="number" class="form-control " name="total" value="{{old('total')}}" placeholder="Total" />
-                                </div>
-                            </div>
                         </div>
                         <button type="submit" class="btn btn-sm btn-success">
-                            Guardar
+                            Siguiente
                         </button>
                         <a href="{{route('ventas.index')}}" class="btn btn-sm btn-link">
                             Cancelar

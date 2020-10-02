@@ -79,12 +79,11 @@
                                                     <td>{{ isset($venta->cliente) ? $venta->cliente->nombre : '-' }}</td>
                                                     <td>{{ isset($venta->sucursal) ? $venta->sucursal->nombre : '-' }}</td>
                                                     <td>{{ isset($venta->localidad) ? $venta->localidad->nombre : '-' }}</td>
-                                                    <td> {{ $venta->total }}</td>
+                                                    <td>$ {{ $venta->total }}</td>
                                                     <td>{{ $venta->created_at ? Carbon\Carbon::parse($venta->created_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td>{{ $venta->updated_at ? Carbon\Carbon::parse($venta->updated_at)->format('d/m/Y H:i').'hs' : ''}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <a href="{{ route('ventas.show', $venta->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Ver</a>
-                                                        <a href="{{ route('ventas.edit', $venta->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                                         <a href="{{ route('ventas.destroyform', $venta->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Borrar</a>
                                                     </td>
                                                 </tr>

@@ -29,7 +29,6 @@ class StoreVentadetalleRequest extends FormRequest
             "articulo_id"  => 'Artículo',
             "cantidad"     => 'Cantidad',
             "precio"       => 'Precio',
-            "subtotal"     => 'Subtotal',
         ];
     }
 
@@ -43,9 +42,8 @@ class StoreVentadetalleRequest extends FormRequest
         return [
             "venta_id"     => 'required|integer',
             "articulo_id"  => 'required|integer',
-            "cantidad"     => 'required|integer',
-            "precio"       => 'required|Numeric',
-            "subtotal"     => 'required|numeric',
+            "cantidad"     => 'required|integer|min:1',
+            "precio"       => 'required|Numeric|min:1',
         ];
     }
 }
