@@ -6,6 +6,7 @@ use App\Http\Requests\StoreVentadetalleRequest;
 use App\Http\Requests\UpdateVentadetalleRequest;
 use App\Venta;
 use App\Ventadetalle;
+use App\Articuloxsucursale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,18 +55,37 @@ class VentadetalleController extends Controller
     public function store(StoreVentadetalleRequest $request)
     {
         $ventadetalle = null;
-        DB::transaction(function() use ($request, &$ventadetalle) {
+        $response = DB::transaction(function() use ($request, &$ventadetalle) {
             $ventadetalle = new Ventadetalle($request->validated());
             $ventadetalle->subtotal = $ventadetalle->cantidad * $ventadetalle->precio;
             $ventadetalle->save();
+
             $ventadetalle->venta->total = $ventadetalle->venta->total + $ventadetalle->subtotal;
             $ventadetalle->venta->save();
+
+            $articuloxsucursale = Articuloxsucursale::where('sucursal_id', $ventadetalle->venta->sucursal_id)
+                ->where('articulo_id', $ventadetalle->articulo_id)
+                ->get()
+                ->first();
+            if (isset($articuloxsucursale->existencia)
+                && $articuloxsucursale->existencia >= $ventadetalle->cantidad
+            ) {
+                $articuloxsucursale->existencia -= $ventadetalle->cantidad;
+                $articuloxsucursale->save();
+                return [
+                    'message' => 'El detalle de venta se agregó correctamente',
+                    'type'    => 'success',
+                ];
+            } else {
+                DB::rollback();
+                return [
+                    'message' => 'No hay stock para el artículo elegido',
+                    'type'    => 'danger',
+                ];
+            }
         });
 
-        return redirect(route('ventadetalles.detalle', $ventadetalle->venta->id))->with([
-            'message' => 'El detalle de venta se agregó correctamente',
-            'type' => 'success',
-        ]);
+        return redirect(route('ventadetalles.detalle', $ventadetalle->venta->id))->with($response);
     }
 
     /**
@@ -128,6 +148,16 @@ class VentadetalleController extends Controller
         DB::transaction(function() use ($ventadetalle) {
             $ventadetalle->venta->total = $ventadetalle->venta->total - $ventadetalle->subtotal;
             $ventadetalle->venta->save();
+
+            $articuloxsucursale = Articuloxsucursale::where('sucursal_id', $ventadetalle->venta->sucursal_id)
+                ->where('articulo_id', $ventadetalle->articulo_id)
+                ->get()
+                ->first();
+            if (isset($articuloxsucursale->existencia)) {
+                $articuloxsucursale->existencia += $ventadetalle->cantidad;
+                $articuloxsucursale->save();
+            }
+
             $ventadetalle->delete();
         });
         return redirect(route('ventadetalles.detalle', $ventadetalle->venta->id))->with([

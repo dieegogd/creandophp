@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVentaRequest;
 use App\Http\Requests\UpdateVentaRequest;
 use App\Venta;
+use App\Articuloxsucursale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -123,6 +124,16 @@ class VentaController extends Controller
     public function destroy(Venta $venta)
     {
         DB::transaction(function() use ($venta) {
+            foreach ($venta->ventadetalle as $ventadetalle) {
+                $articuloxsucursale = Articuloxsucursale::where('sucursal_id', $ventadetalle->venta->sucursal_id)
+                    ->where('articulo_id', $ventadetalle->articulo_id)
+                    ->get()
+                    ->first();
+                if (isset($articuloxsucursale->existencia)) {
+                    $articuloxsucursale->existencia += $ventadetalle->cantidad;
+                    $articuloxsucursale->save();
+                }
+            }
             $venta->ventadetalle()->delete();
             $venta->delete();
         });
