@@ -147,7 +147,12 @@ class ArticuloController extends Controller
         foreach ($term as $t) {
             $query->where('articulos.nombre', 'LIKE', "%{$t}%");
         }
-        $query->groupBy(['articulos.id', 'listaprecios.precio']);
+        $query->groupBy([
+            'articulos.id',
+            'articulos.id',
+            'articulos.nombre',
+            'listaprecios.precio'
+        ]);
         $query = $query->get();
         $query = $query->toJson();
         return $query;
