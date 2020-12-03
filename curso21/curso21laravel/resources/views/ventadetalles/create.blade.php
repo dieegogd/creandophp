@@ -43,7 +43,9 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="form-group">
                                     <label for="cuil">Articulo:</label>
-                                    {{ Form::select('articulo_id', App\Articulo::orderBy('nombre')->pluck('nombre', 'id'), old('articulo_id'), ['class' => 'form-control']) }}
+                                    <input type="text" class="form-control" value="" id="cliente_nombre" placeholder="Articulo" />
+                                    <input type="hidden" name="articulo_id" value="" />
+                                    <!--{{ Form::select('articulo_id', App\Articulo::orderBy('nombre')->pluck('nombre', 'id'), old('articulo_id'), ['class' => 'form-control']) }} -->
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -82,6 +84,17 @@
             $('#subtotal').val(
                 $('[name="cantidad"].calculateSubtotal').val() * $('[name="precio"].calculateSubtotal').val()
             );
+        });
+    
+        $('#articulo_nombre').autocomplete({
+            source: "{{ route('articulos.autocompletar') }}",
+            minLength: 1,
+            select: function( event, ui ) {
+                $('#articulo_nombre').val(ui.item.label);
+                $('input[name="articulo_id"]').val(ui.item.value);
+
+                return false;
+            }
         });
     });
     </script>
