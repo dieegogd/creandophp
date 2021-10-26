@@ -26,6 +26,6 @@
     "dependencies": {
         "font-awesome": "^4.7.0",
         "jquery-dialog": "^0.5.2",
-        "jquery-ui": "^1.12.1"
+        "jquery-ui": "^1.13.0"
     }
 }
